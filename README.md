@@ -13,6 +13,11 @@ run the code using pre-defined parameters:
 
 This will create a file protein.data in data folder. It is already provide for you.
 
-2. for CPU simply run `./run.sh --model deepsol1 data/protein.data` and for GPU: run `./run.sh --model deepsol1 --device cuda0  data/protein.data`
+2. Training:
 
+for CPU simply run `./run.sh --model deepsol1 --mode train data/protein.data` and for GPU: run `./run.sh --model deepsol1 --mode train --device cuda0  data/protein.data`
+
+3. Decoding only:
+
+for CPU simply run `./run.sh --model deepsol1 --mode decode data/protein.data` and for GPU: run `./run.sh --model deepsol1 --mode decode --device cuda0  data/protein.data`
     
