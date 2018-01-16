@@ -189,12 +189,12 @@ def main():
     test = {}
     test['src'], test['tgt'] = make_data(opt.test_src, opt.test_tgt)
 
-    print('Saving data to \'' + opt.save_data + '.data\'...')
+    print('Saving data to \'' + opt.save_data + '\'...')
     save_data = {'train': train,
                  'valid': valid,
                  'test': test}
 
-    with open(opt.save_data + '.data', 'wb') as handle:
+    with open(opt.save_data, 'wb') as handle:
         pickle.dump(save_data, handle)
 
 

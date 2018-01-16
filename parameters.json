@@ -1,5 +1,5 @@
 {
-    "DeepSol1":{
+    "deepsol1":{
         "attention":null,
 	"batch_size":64,
 	"cnn_config":"2:3:4:5:6:7:8:9:10:11:12:13:14:15,64:64:64:64:64:64:64:128:128:128:128:128:128:128,global",
@@ -10,7 +10,7 @@
 	"rnn_bidirectional":null,
 	"rnn_config":null
     },
-    "DeepSol2":{
+    "deepsol2":{
         "attention":null,
         "batch_size":16,
         "cnn_config":"3:5:7:9:11:13:15,64:64:64:128:128:128:128,global",
@@ -24,7 +24,7 @@
         "protein_seq_feats":"yes",
         "num_bio_feats":57
     },
-    "DeepSol3":{
+    "deepsol3":{
         "attention":null,
         "batch_size":16,
         "cnn_config":"2:3:4:5:6:7:8:9:10:11:12:13:14:15,64:64:64:64:64:64:64:128:128:128:128:128:128:128,global",

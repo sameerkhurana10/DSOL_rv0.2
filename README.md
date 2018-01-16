@@ -12,11 +12,12 @@ run the code using pre-defined parameters:
 
 1. Recipe Training:
 
-for CPU simply run `./run.sh --model deepsol1 --stage 1 --mode train data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode train --device cuda0  data/protein.data`
+for CPU simply run `./run.sh --model deepsol1 --stage 1 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep --device cuda0 data/protein.data`
 
-stage 1 is data preparation and stage 2 is training or decoding only. If you have prepared data you can give the argument stage 2 to move to training or decoding
+stage 1 is data preparation and stage 2 is training or decoding. 
+If you have prepared data you can give the argument stage 2 to move to training or decoding
 
 3. Recipe for Decoding only:
 
-for CPU simply run `./run.sh --model deepsol1 --stage 1 --mode decode data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode decode --device cuda0  data/protein.data`
+for CPU simply run `./run.sh --model deepsol1 --stage 2 --mode decode data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 2 --mode decode --device cuda0 data/protein.data`
     
