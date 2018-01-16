@@ -9,15 +9,14 @@ Install Anaconda:
 
 run the code using pre-defined parameters:
 
-1. Data preparation: `python preprocess_dsol1.py -train_src data/train_src -train_tgt data/train_tgt -valid_src data/val_src -valid_tgt data/val_tgt -test_src data/test_src -test_tgt data/test_tgt -save_data data/protein`
 
-This will create a file protein.data in data folder. It is already provide for you.
+1. Recipe Training:
 
-2. Training:
+for CPU simply run `./run.sh --model deepsol1 --stage 1 --mode train data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode train --device cuda0  data/protein.data`
 
-for CPU simply run `./run.sh --model deepsol1 --mode train data/protein.data` and for GPU: run `./run.sh --model deepsol1 --mode train --device cuda0  data/protein.data`
+stage 1 is data preparation and stage 2 is training or decoding only. If you have prepared data you can give the argument stage 2 to move to training or decoding
 
-3. Decoding only:
+3. Recipe for Decoding only:
 
-for CPU simply run `./run.sh --model deepsol1 --mode decode data/protein.data` and for GPU: run `./run.sh --model deepsol1 --mode decode --device cuda0  data/protein.data`
+for CPU simply run `./run.sh --model deepsol1 --stage 1 --mode decode data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode decode --device cuda0  data/protein.data`
     
