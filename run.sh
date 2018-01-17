@@ -52,7 +52,7 @@ fi
 
 if [ $stage -ge 2 ] ; then
     
-    if [[ "$mode" = "train" ]] ; then
+    if [[ "$mode" = "all" ]] ; then
 
 	if [[ $model == "deepsol1" ]]; then
 	    KERAS_BACKEND=${keras_backend} python main_dsol1.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
@@ -69,8 +69,12 @@ if [ $stage -ge 2 ] ; then
     
     if [[ "$mode" == "decode" ]] ; then
 	KERAS_BACKEND=${keras_backend} python decoder.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
-
     fi
+
+    if [[ "$mode" == "cv" ]]; then
+    	KERAS_BACKEND=${keras_backend} python cross_validation.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
+    fi
+
 fi
 
 # for running DSOL2

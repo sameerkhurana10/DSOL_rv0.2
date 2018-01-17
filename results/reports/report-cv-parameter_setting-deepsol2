@@ -1,0 +1,152 @@
+Iteration: 1
+
+Test Accuracy: 
+0.801786228753
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.88      0.84      4086
+          1       0.80      0.69      0.74      2856
+
+avg / total       0.80      0.80      0.80      6942
+
+Confusion Matrix test: 
+[[3606  480]
+ [ 896 1960]]
+Iteration: 2
+
+Test Accuracy: 
+0.802362431576
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.87      0.84      4042
+          1       0.80      0.70      0.75      2900
+
+avg / total       0.80      0.80      0.80      6942
+
+Confusion Matrix test: 
+[[3535  507]
+ [ 865 2035]]
+Iteration: 3
+
+Test Accuracy: 
+0.794007490637
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.87      0.83      4042
+          1       0.79      0.69      0.74      2900
+
+avg / total       0.79      0.79      0.79      6942
+
+Confusion Matrix test: 
+[[3509  533]
+ [ 897 2003]]
+Iteration: 4
+
+Test Accuracy: 
+0.805099394987
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.81      0.88      0.84      4116
+          1       0.80      0.69      0.74      2826
+
+avg / total       0.80      0.81      0.80      6942
+
+Confusion Matrix test: 
+[[3630  486]
+ [ 867 1959]]
+Iteration: 5
+
+Test Accuracy: 
+0.798617113224
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.88      0.83      4010
+          1       0.80      0.69      0.74      2932
+
+avg / total       0.80      0.80      0.80      6942
+
+Confusion Matrix test: 
+[[3509  501]
+ [ 897 2035]]
+Iteration: 6
+
+Test Accuracy: 
+0.791558628637
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.79      0.87      0.83      4051
+          1       0.79      0.68      0.73      2891
+
+avg / total       0.79      0.79      0.79      6942
+
+Confusion Matrix test: 
+[[3529  522]
+ [ 925 1966]]
+Iteration: 7
+
+Test Accuracy: 
+0.801498127341
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.88      0.84      4034
+          1       0.80      0.70      0.75      2908
+
+avg / total       0.80      0.80      0.80      6942
+
+Confusion Matrix test: 
+[[3538  496]
+ [ 882 2026]]
+Iteration: 8
+
+Test Accuracy: 
+0.80221838087
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.88      0.84      4006
+          1       0.81      0.70      0.75      2936
+
+avg / total       0.80      0.80      0.80      6942
+
+Confusion Matrix test: 
+[[3520  486]
+ [ 887 2049]]
+Iteration: 9
+
+Test Accuracy: 
+0.799625468165
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.88      0.83      4016
+          1       0.80      0.69      0.75      2926
+
+avg / total       0.80      0.80      0.80      6942
+
+Confusion Matrix test: 
+[[3519  497]
+ [ 894 2032]]
+Iteration: 10
+
+Test Accuracy: 
+0.790118121579
+Score Report Test: : 
+             precision    recall  f1-score   support
+
+          0       0.80      0.86      0.83      4045
+          1       0.78      0.69      0.73      2897
+
+avg / total       0.79      0.79      0.79      6942
+
+Confusion Matrix test: 
+[[3485  560]
+ [ 897 2000]]
+Mean CV accuracy: 
+0.798689138577

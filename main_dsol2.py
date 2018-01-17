@@ -54,7 +54,7 @@ def get_model_path():
     return model_path
 
 
-def get_classification_performace_path():
+def get_classification_performance_path():
     report_name = 'report-parameter_setting-' + str(static_args.parameter_setting_id)
     reports_dir = static_args.results_dir + '/reports/'
     if not os.path.isdir(reports_dir):
@@ -63,8 +63,8 @@ def get_classification_performace_path():
     return report_path
 
 
-def save_classification_performace(string, report):
-    save_at_path = get_classification_performace_path()
+def save_classification_performance(string, report):
+    save_at_path = get_classification_performance_path()
     with open(save_at_path, 'a') as f:
         f.write(string + '\n' + report + '\n')
     f.close()
@@ -195,12 +195,16 @@ def main():
                                                                                         x_test_bio,
                                                                                         y_test)
 
+    results_filename_with_path = get_classification_performance_path()
+    if os.path.exists(results_filename_with_path):
+    	os.remove(results_filename_with_path)
+
     # save on disk
-    save_classification_performace('Validation Accuracy: ', str(acc_val))
-    save_classification_performace('Test Accuracy: ', str(acc_test))
-    save_classification_performace('Score Report Test: : ',
+    save_classification_performance('Validation Accuracy: ', str(acc_val))
+    save_classification_performance('Test Accuracy: ', str(acc_test))
+    save_classification_performance('Score Report Test: : ',
             str(score_report_test))
-    save_classification_performace('Confusion Matrix test: ', str(cm_test))
+    save_classification_performance('Confusion Matrix test: ', str(cm_test))
     save_classification_prediction(pred_test)
     
 

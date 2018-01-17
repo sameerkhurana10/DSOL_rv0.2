@@ -55,7 +55,7 @@ def get_model_path():
     return model_path
 
 
-def get_classification_performace_path():
+def get_classification_performance_path():
     report_name = 'report-parameter_setting-' + str(static_args.parameter_setting_id)
     reports_dir = static_args.results_dir + '/reports/'
     if not os.path.isdir(reports_dir):
@@ -64,8 +64,8 @@ def get_classification_performace_path():
     return report_path
 
 
-def save_classification_performace(string, report):
-    save_at_path = get_classification_performace_path()
+def save_classification_performance(string, report):
+    save_at_path = get_classification_performance_path()
     with open(save_at_path, 'a') as f:
         f.write(string + '\n' + report + '\n')
     f.close()
@@ -155,19 +155,22 @@ def main():
     # Load the best model. Model that performs best on the validation data
     best_model = utils.load_model(get_model_path())
 
-    # Calculate classification performace of the best model on the val and test
+    # Calculate classification performance of the best model on the val and test
     [acc_val, score_report_val, cm_val, pred_val] = get_classification_performance(best_model,
                                                                          x_val,
                                                                          y_val)
     [acc_test, score_report_test, cm_test, pred_test] = get_classification_performance(best_model,
                                                                             x_test,
                                                                             y_test)
+    results_filename_with_path = get_classification_performance_path()
+    if os.path.exists(results_filename_with_path):
+    	os.remove(results_filename_with_path)
 
     # save on disk
-    save_classification_performace('Validation Accuracy: ', str(acc_val))
-    save_classification_performace('Test Accuracy: ', str(acc_test))
-    save_classification_performace('Score Report Test: : ', str(score_report_test))
-    save_classification_performace('Confusion Matrix test: ', str(cm_test))
+    save_classification_performance('Validation Accuracy: ', str(acc_val))
+    save_classification_performance('Test Accuracy: ', str(acc_test))
+    save_classification_performance('Score Report Test: : ', str(score_report_test))
+    save_classification_performance('Confusion Matrix test: ', str(cm_test))
     save_classification_prediction(pred_test)
     
 
