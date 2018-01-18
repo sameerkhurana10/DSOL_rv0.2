@@ -2,6 +2,8 @@ Iteration: 1
 
 Test Accuracy: 
 0.763036588879
+Test MCC: 
+0.521390636537
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -17,6 +19,8 @@ Iteration: 2
 
 Test Accuracy: 
 0.763180639585
+Test MCC: 
+0.52493310273
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -32,6 +36,8 @@ Iteration: 3
 
 Test Accuracy: 
 0.751368481706
+Test MCC: 
+0.500863454174
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -47,6 +53,8 @@ Iteration: 4
 
 Test Accuracy: 
 0.764765197349
+Test MCC: 
+0.522117864168
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -62,6 +70,8 @@ Iteration: 5
 
 Test Accuracy: 
 0.760731777586
+Test MCC: 
+0.519235282144
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -77,6 +87,8 @@ Iteration: 6
 
 Test Accuracy: 
 0.756122154999
+Test MCC: 
+0.509950980186
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -92,6 +104,8 @@ Iteration: 7
 
 Test Accuracy: 
 0.759435321233
+Test MCC: 
+0.515591073257
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -107,6 +121,8 @@ Iteration: 8
 
 Test Accuracy: 
 0.763468740997
+Test MCC: 
+0.522265228181
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -122,6 +138,8 @@ Iteration: 9
 
 Test Accuracy: 
 0.759147219821
+Test MCC: 
+0.514795401504
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -137,6 +155,8 @@ Iteration: 10
 
 Test Accuracy: 
 0.732209737828
+Test MCC: 
+0.460293487293
 Score Report Test: : 
              precision    recall  f1-score   support
 
@@ -150,3 +170,5 @@ Confusion Matrix test:
  [ 764 2133]]
 Mean CV accuracy: 
 0.757346585998
+Mean CV MCC: 
+0.511143651017

@@ -1,3 +1,4 @@
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 import os
 import argparse
 import pickle
@@ -10,6 +11,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
+from sklearn.metrics import matthews_corrcoef
 from sklearn.model_selection import KFold
 
 parser = argparse.ArgumentParser(description='decoder.py')
@@ -93,7 +95,8 @@ def get_classification_performance(best_model, x, y):
     acc = accuracy_score(y, preds)
     score_report = classification_report(y, preds)
     cm = confusion_matrix(y, preds)
-    return [acc, score_report, cm, preds, pred_probs]
+    mcc = matthews_corrcoef(y,preds)
+    return [acc, score_report, cm, mcc, preds, pred_probs]
 
 def get_classification_prediction(best_model, x, y):
     pred_probs = get_probabilities(best_model, x)
@@ -164,30 +167,32 @@ def main():
     	os.remove(results_filename_with_path)
 
     #Keep average scores for cross_validation
-    acc_test_vec = []
+    acc_test_vec, mcc_test_vec = [],[]
     count = 1
     for train_index,test_index in kf.split(x_full):
         print('Starting CV Iteration: ',str(count))
         x_test = x_full[test_index]
         y_test = y_full[test_index]
         y_test = np.array(y_test, dtype='int32')
-
         if (static_args.parameter_setting_id=='deepsol1'):
-            [acc_test, score_report_test, cm_test, pred_test, pred_prob_test] = get_classification_performance(best_model,x_test,y_test)
+            [acc_test, score_report_test, cm_test, mcc_test, pred_test, pred_prob_test] = get_classification_performance(best_model,x_test,y_test)
         else:
             x_test_bio = x_full_bio[test_index]
-            [acc_test, score_report_test, cm_test, pred_test, pred_prob_test] = get_classification_performance(best_model,[x_test,x_test_bio],y_test)
-
-        #Save output on disk
+            [acc_test, score_report_test, cm_test, mcc_test, pred_test, pred_prob_test] = get_classification_performance(best_model,[x_test,x_test_bio],y_test)
+	#Save output on disk
         save_classification_performance('Iteration: '+str(count),'')
-        save_classification_performance('Test Accuracy: ', str(acc_test))
-        save_classification_performance('Score Report Test: : ', str(score_report_test))
-        save_classification_performance('Confusion Matrix test: ', str(cm_test))
+        save_classification_performance('Test Accuracy: ',str(acc_test))
+        save_classification_performance('Test MCC: ',str(mcc_test))
+        save_classification_performance('Score Report Test: : ',str(score_report_test))
+        save_classification_performance('Confusion Matrix test: ',str(cm_test))
         acc_test_vec.append(acc_test)
+        mcc_test_vec.append(mcc_test)
         count=count+1
 
     mean_acc = (1.0*sum(acc_test_vec))/len(acc_test_vec)
     save_classification_performance('Mean CV accuracy: ',str(mean_acc))
+    mean_mcc = (1.0*sum(mcc_test_vec))/len(mcc_test_vec)
+    save_classification_performance('Mean CV MCC: ',str(mean_mcc))
 
     print('Finished cross-validation')
     
