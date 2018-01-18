@@ -1,20 +1,30 @@
-Install Anaconda:
+# DeepSol: A Deep Learning Framework for Sequence-Based Protein Solubility Prediction
 
+![alt text](http://people.csail.mit.edu/sameerk/dsol.svg)
+
+# Setting up the environment:
+
+## Install Anaconda
 1. Download Anaconda installer python3.* for linux : https://www.anaconda.com/download/#linux
 2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location
-2. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
-3. Run `conda env create -f environment.yml`
-4. Activate the environment by running `source activate dsol`
+
+## Activate environment
+1. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
+2. Run `conda env create -f environment.yml`
+3. Run `source activate dsol`
 
 
-Run the code using pre-defined parameters:
+# Recipe for running DeepSol:
 
+## Data Preparation
 
-1. Recipe Data Preparation:
+1. For DeepSol1: `./run.sh --model deepsol1 --stage 1 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep --device cuda0 data/protein.data`
 
-For CPU simply run `./run.sh --model deepsol1 --stage 1 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep --device cuda0 data/protein.data`
+2. For DeepSol2: `./run.sh --model deepsol2 --stage 1 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep --device cuda0 data/protein_with_bio.data`
 
-Here stage 1 is for data preparation, stage 2 is for training and/or decoding and stage 3 is for cross-validation. 
+## Model Training
+### CPU only
+Run `./run.sh --model deepsol1 --stage 2 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep data/protein.data` 
  
 If you want to only predict on test set you can give the argument `--mode decode` with `--stage 2` for just decoding, while for both training and decoding you can give the arguement `--mode all` with `--stage 2`.
 
