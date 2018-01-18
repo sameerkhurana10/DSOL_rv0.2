@@ -4,11 +4,13 @@
 
 # Setting up the environment:
 
+This step will install all the dependencies required for running DeepSol in an Anaconda virtual environment locally. You do not need sudo permissions for this step.
+
 ## Install Anaconda
 1. Download Anaconda installer python3.* for linux : https://www.anaconda.com/download/#linux
 2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location
 
-## Activate environment
+## Create the environment
 1. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
 2. Run `conda env create -f environment.yml`
 3. Run `source activate dsol`
