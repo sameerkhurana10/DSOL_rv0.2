@@ -37,7 +37,7 @@ There are two stages in the script.
 
 the recipe supports gpu usage using the option `--device cuda`, if you may wish. More details in the GPU section. Rest of the options are self explanatory and can be modified as desired.
 
-## Run on CPU
+## CPU
 
 Use the following command:
 
@@ -55,7 +55,7 @@ Note that we use `--stage 2` because we do not want to perform Data Preparation 
 
 ### Cuda installation
 
-First ensure that you have cuda installed. We support Cuda 8.0 and Cudnn 5.1 . If you use any other version of Cudnn, you misht run into some issues.
+First ensure that you have cuda installed. We support Cuda 8.0 and Cudnn 5.1 . If you use any other version of Cudnn, you might run into some issues.
 
 Install Cuda 8.0 and Cudnn 5.1 from https://developer.nvidia.com/
 
