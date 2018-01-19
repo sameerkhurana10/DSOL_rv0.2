@@ -18,27 +18,61 @@ This step will install all the dependencies required for running DeepSol in an A
 
 # Recipe for running DeepSol:
 
-## Data Preparation
+recipe is contained in the script `run.sh`. To see the options run `./run.sh` and you shall see the following:
 
-1. For DeepSol1: `./run.sh --model deepsol1 --stage 1 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep --device cuda0 data/protein.data`
+```
+main options (for others, see top of script file)
+  --model (deepsol1/deepsol2|deepsol3)               # model architecture to use
+  --mode  (train/decode)                             # train up a new model or use an existing model
+  --stage (1/2)                                      # point to run the script from 
+  --conf_file                                        # model parameter file
+  --keras_backend                                    # backend for keras
+  --cuda_root                                        # the path cuda installation
+  --device (cuda/cpu)                                # device to use for running the recipe
+```
+There are two stages in the script. 
 
-2. For DeepSol2: `./run.sh --model deepsol2 --stage 1 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep --device cuda0 data/protein_with_bio.data`
+1. Data preparation
+2. Model building and decoding, `--mode train`, or decoding using existing model `--mode decode`.
 
-## Model Training
-### CPU only
-Run `./run.sh --model deepsol1 --stage 2 --mode prep data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 1 --mode prep data/protein.data` 
- 
-If you want to only predict on test set you can give the argument `--mode decode` with `--stage 2` for just decoding, while for both training and decoding you can give the arguement `--mode all` with `--stage 2`.
+the recipe supports gpu usage using the option `--device cuda`, if you may wish. More details in the GPU section. Rest of the options are self explanatory and can be modified as desired.
 
-2. Recipe for Decoding only:
+## Run on CPU
 
-For CPU simply run `./run.sh --model deepsol1 --stage 2 --mode decode data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 2 --mode decode --device cuda0 data/protein.data`
+Use the following command:
 
-3. Recipe for Training and Decoding:
+`./run.sh --model deepsol1 --stage 1 --mode train --device cpu data/protein.data`
 
-For CPU simply run `./run.sh --model deepsol1 --stage 2 --mode all data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 2 --mode all --device cuda0 data/protein.data`
+Note that we used `--model deepsol1`. you can use `deepsol2` or `deepsol3`
 
-4. Recipe for Cross-Validation:
+In case you want to use the existing models that we have provided in the folder `results/models` to decode the data. You can run the following command:
 
-For CPU simply run `./run.sh --model deepsol1 --stage 3 --mode cv data/protein.data` and for GPU: run `./run.sh --model deepsol1 --stage 3 --mode cv --device cuda0 data/protein.data`
+`./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/protein.data`
 
+Note that we use `--stage 2` because we do not want to perform Data Preparation in this case. We already have the data that we need to decode using `deepsol1`, provided at `results/models/deepsol1`
+
+## GPU
+
+### Cuda installation
+
+First ensure that you have cuda installed. We support Cuda 8.0 and Cudnn 5.1 . If you use any other version of Cudnn, you misht run into some issues.
+
+Install Cuda 8.0 and Cudnn 5.1 from https://developer.nvidia.com/
+
+We tested our code against GeForce GTX 1080 Nvidia GPUs https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/ . The GPU driver version is 384.59
+
+We also tested on Nvidia Tesla K20Xm : https://www.techpowerup.com/gpudb/1884/tesla-k20xm with driver version 375.66
+
+### Run on GPU
+
+Use the following command:
+
+`./run.sh --model deepsol1 --stage 1 --mode train --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
+
+Note that we used `--model deepsol1`. you can use `deepsol2` or `deepsol3`. Also, `--cuda_root` should you the path to your cuda installation. By default it is `/usr/local/cuda`
+
+In case you want to use the existing models that we have provided in the folder `results/models` to decode the data. You can run the following command:
+
+`./run.sh --model deepsol1 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
+
+Note that we use `--stage 2` because we do not want to perform Data Preparation in this case. We already have the data that we need to decode using `deepsol1`, provided at `results/models/deepsol1`
