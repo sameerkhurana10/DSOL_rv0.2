@@ -1,4 +1,11 @@
-# for running DSOL1
+#!/bin/bash
+# Copyright 2018  Massachusetts Institute of Technology (Sameer Khurana)
+#                 Qatar Computing Research Institute    (Raghavendra Mall)
+# Apache 2.0
+
+# Recipe for running DeepSol training and decoding
+
+# Begin configuration section.
 
 conf_file=parameters.json
 keras_backend=theano
@@ -8,20 +15,22 @@ model=
 mode=
 stage=0
 
+echo "$0 $@"  # Print the command line for logging
+
 . parse_options.sh || exit 1;
 
 
 if [ $# != 1 ]; then
-    echo "usage: ./run.sh <data-dir-path>"
+    echo "usage: ./run.sh <options> data_file"
     echo "e.g.:  ./run.sh data/protein.data"
     echo "main options (for others, see top of script file)"
-    echo "  --model                                            # default full."
-    echo "  --mode                                             # default full."
-    echo "  --stage                                             # default full."
-    echo "  --conf_file                                        # default full."
-    echo "  --keras_backend                                    # use graphs in src-dir"
-    echo "  --cuda_root                                        # number of parallel jobs"
-    echo "  --device                                           # config containing options"
+    echo "  --model (deepsol1/deepsol2|deepsol3)               # model architecture to use"
+    echo "  --mode  (train/decode)                             # train up a new model or use an existing model"
+    echo "  --stage (1/2)                                      # point to run the script from "
+    echo "  --conf_file                                        # model parameter file"
+    echo "  --keras_backend                                    # backend for keras"
+    echo "  --cuda_root                                        # the path cuda installation"
+    echo "  --device (cuda/cpu)                                # device to use for running the recipe"
     exit 1;
 fi
 
@@ -38,8 +47,10 @@ if [[ $device == *"cuda"* ]]; then
     export THEANO_FLAGS="base_compiledir=$(pwd)/.theano,cuda.root=${cuda_root},device=${device},floatX=float32"
 fi
 
-if [ $stage -ge 1 ] ; then
-    
+
+
+if [ $stage -le 1 ] ; then
+    echo "++++++++++++++++++++ DATA PREPARATION ++++++++++++++++++++"
     if [[ $model == "deepsol1" ]]; then
 	KERAS_BACKEND=${keras_backend} python preprocess_dsol1.py -train_src data/train_src -train_tgt data/train_tgt -valid_src data/val_src -valid_tgt data/val_tgt -test_src data/test_src -test_tgt data/test_tgt -save_data ${data}
     fi
@@ -50,9 +61,11 @@ if [ $stage -ge 1 ] ; then
 fi
 
 
-if [ $stage -ge 2 ] ; then
+if [ $stage -le 2 ] ; then
     
-    if [[ "$mode" = "all" ]] ; then
+    if [[ "$mode" == "train" ]] ; then
+
+	echo "++++++++++++++++++++ BUILDING NEW MODELS ++++++++++++++++++++"
 
 	if [[ $model == "deepsol1" ]]; then
 	    KERAS_BACKEND=${keras_backend} python main_dsol1.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
@@ -68,17 +81,15 @@ if [ $stage -ge 2 ] ; then
     fi
     
     if [[ "$mode" == "decode" ]] ; then
+
+	echo "++++++++++++++++++++ DECODING USING EXISTING MODELS ++++++++++++++++++++"
+	
 	KERAS_BACKEND=${keras_backend} python decoder.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
     fi
 
-    if [[ "$mode" == "cv" ]]; then
-    	KERAS_BACKEND=${keras_backend} python cross_validation.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
-    fi
+    #if [[ "$mode" == "cv" ]]; then
+    #	KERAS_BACKEND=${keras_backend} python cross_validation.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
+    #fi
 
 fi
 
-# for running DSOL2
-#python main_dsol2.py -data data/protein_dsol2.data -conf_file parameters.json -parameter_setting_id DeepSol2
-
-# for running DSOL3 
-#python main_dsol3.py -data data/protein_dsol2.data -conf_file parameters.json -parameter_setting_id DeepSol3
