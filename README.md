@@ -79,7 +79,7 @@ Note that we use `--stage 2` because we do not want to perform Data Preparation 
 
 ## Parameter Variance Check
 
-The training data was split in 90/10 train and validation set using stratified shuffled sampling. The hyper-parameters were tuned on this validation split. In this section we calculate the variance in performance of the hyper-parameters on other CV folds. We split the data in 10 folds to test the variance. Note that hyper-parameters were tuned only using one fold.
+The training data was split in 90/10 train and validation set using stratified shuffled sampling. The hyper-parameters were tuned on this validation split. In this section we calculate the variance in performance of the hyper-parameters on other CV folds. We split the data in 10 folds to test the variance.
 
 For CPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data`
 
