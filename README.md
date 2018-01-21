@@ -23,17 +23,17 @@ recipe is contained in the script `run.sh`. To see the options run `./run.sh` an
 ```
 main options (for others, see top of script file)
   --model (deepsol1/deepsol2|deepsol3)               # model architecture to use
-  --mode  (train/decode)                             # train up a new model or use an existing model
+  --mode  (train/decode/cv)                          # train up a new model or use an existing model
   --stage (1/2)                                      # point to run the script from 
   --conf_file                                        # model parameter file
   --keras_backend                                    # backend for keras
   --cuda_root                                        # the path cuda installation
   --device (cuda/cpu)                                # device to use for running the recipe
 ```
-There are two stages in the script. 
+There are three stages in the script. 
 
 1. Data preparation
-2. Model building and decoding, `--mode train`, or decoding using existing model `--mode decode`.
+2. Model building and decoding, `--mode train`, or decoding using existing model `--mode decode`. Information about `--mode cv` is given in "parameter variance check" section
 
 the recipe supports gpu usage using the option `--device cuda`, if you may wish. More details in the GPU section. Rest of the options are self explanatory and can be modified as desired.
 
@@ -76,3 +76,11 @@ In case you want to use the existing models that we have provided in the folder 
 `./run.sh --model deepsol1 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
 
 Note that we use `--stage 2` because we do not want to perform Data Preparation (model building) in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`
+
+## Parameter Variance Check
+
+The training data was split in 90/10 train and validation set using stratified shuffled sampling. The hyper-parameters were tuned on this validation split. In this section we calculate the variance in performance of the hyper-parameters on other CV folds. We split the data in 10 folds to test the variance. Note that hyper-parameters were tuned only using one fold.
+
+For CPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data`
+
+For GPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
