@@ -49,7 +49,7 @@ In case you want to use the existing models that we have provided in the folder 
 
 `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/protein.data`
 
-Note that we use `--stage 2` because we do not want to perform Data Preparation in this case. We already have the data that we need to decode using `deepsol1`, provided at `results/models/deepsol1`
+Note that we use `--stage 2` because we do not want to perform Data Preparation (model building) in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`
 
 ## GPU
 
@@ -75,4 +75,4 @@ In case you want to use the existing models that we have provided in the folder 
 
 `./run.sh --model deepsol1 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
 
-Note that we use `--stage 2` because we do not want to perform Data Preparation in this case. We already have the data that we need to decode using `deepsol1`, provided at `results/models/deepsol1`
+Note that we use `--stage 2` because we do not want to perform Data Preparation (model building) in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`
