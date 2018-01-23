@@ -39,7 +39,6 @@ dynamic_args = static_args.parameters_json[static_args.parameter_setting_id]
 dynamic_args['optim'] = dynamic_args['optim_config'].split(',')[0]
 dynamic_args['learning_rate'] = float(dynamic_args['optim_config'].split(',')[1])
 
-print(static_args.results_dir)
 def get_model_path():
     model_name = static_args.model
     model_dir = static_args.results_dir+'/models/' 
@@ -151,7 +150,8 @@ def main():
         [pred_test,pred_prob_test] = get_classification_prediction(best_model,[x_test,x_test_bio],y_test)
 
     print('Finished testing')
-    #save on disk
+    #save ion disk
+    get_classification_performance_path()
     save_classification_prediction(pred_test,pred_prob_test)
     
 
