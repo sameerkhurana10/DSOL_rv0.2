@@ -97,3 +97,6 @@ For CPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/pr
 For GPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
 
 The results corresponding to `--mode cv` will also be saved in `results/reports/` folder.
+
+## Additional Notes
+Note that we sometimes get an `Exception Error` related to `weakref.py` at the end of the output. This can be ignored and has no impact on the results.
