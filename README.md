@@ -51,7 +51,9 @@ The result corresponding to `--mode train` will be a model named `deepsol1` whic
 In case you want to use the existing models for just testing, we have provided them in the folder `results/models` to decode the data. You can run the following command:
 
 `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/protein.data` or
+
 `./run.sh --model deepsol2 --stage 2 --mode decode --device cpu data/protein_with_bio.data` or
+
 `./run.sh --model deepsol3 --stage 2 --mode decode --device cpu data/protein_with_bio.data`
 
 The results corresponding to `--mode decode` will be saved in `results/reports/` folder. Note that we used `--stage 2` because we do not want to perform Data Preparation (model building) in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
@@ -79,7 +81,9 @@ Note that we used `--model deepsol1`. you can use `deepsol2` or `deepsol3`. Also
 In case you want to use the existing models for just testing, we have provided them in the folder `results/models` to decode the data. You can run the following command:
 
 `./run.sh --model deepsol1 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data` or
+
 `./run.sh --model deepsol2 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data` or
+
 `./run.sh --model deepsol3 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data` 
 
 Note that we use `--stage 2` because we do not want to perform Data Preparation (model building) in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
