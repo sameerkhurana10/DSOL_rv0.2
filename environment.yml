@@ -16,6 +16,7 @@ dependencies:
   - setuptools=33.1.1=py35_0
   - six=1.10.0=py35_1
   - sqlite=3.13.0=1
+  - python=3.6.1
   - tk=8.5.19=1
   - wheel=0.29.0=py35_0
   - xz=5.2.2=0
