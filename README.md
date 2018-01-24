@@ -90,7 +90,7 @@ Note that we use `--stage 2` because we do not want to perform model building in
 
 ## Parameter Variance Check
 
-In this section we calculate the variance in performance of the DeepSol models on 10-fold cross-validation folds. 
+In this section we calculate the variance in performance of the DeepSol models on 10 cross-validation folds. 
 
 For CPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data`
 
