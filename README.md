@@ -92,11 +92,15 @@ Note that we use `--stage 2` because we do not want to perform model building in
 
 In this section we calculate the variance in performance of the DeepSol models on 10 cross-validation folds. 
 
-For CPU: run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data` or
+For CPU: 
+
+run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data` or
 
 run `./run.sh --model deepsol2 --stage 2 --mode cv --device cpu data/protein_with_bio.data`
 
-For GPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data` or
+For GPU:
+
+run `./run.sh --model deepsol1 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data` or
 
 run `./run.sh --model deepsol2 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data`
 
