@@ -78,7 +78,7 @@ Use the following command to build the training model:
 
 Note that we used `--model deepsol1`. you can use `deepsol2` or `deepsol3`. Also, `--cuda_root` should be the path to your cuda installation. By default it is `/usr/local/cuda`.
 
-In case you want to use the existing models for just testing, we have provided them in the folder `results/models` to decode the data. You can run the following command:
+In case you want to use the existing models for just testing, we have provided them in the folder `results/models/` to decode the data. You can run the following command:
 
 `./run.sh --model deepsol1 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data` or
 
