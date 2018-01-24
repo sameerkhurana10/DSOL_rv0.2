@@ -56,7 +56,7 @@ In case you want to use the existing models for just testing, we have provided t
 
 `./run.sh --model deepsol3 --stage 2 --mode decode --device cpu data/protein_with_bio.data`
 
-The results corresponding to `--mode decode` will be saved in `results/reports/` folder. Note that we used `--stage 2` because we do not want to perform Data Preparation (model building) in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
+The results corresponding to `--mode decode` will be saved in `results/reports/` folder. Note that we used `--stage 2` because we do not want to perform model building in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
 
 ## GPU
 
@@ -86,15 +86,14 @@ In case you want to use the existing models for just testing, we have provided t
 
 `./run.sh --model deepsol3 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data` 
 
-Note that we use `--stage 2` because we do not want to perform Data Preparation (model building) in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
+Note that we use `--stage 2` because we do not want to perform model building in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
 
 ## Parameter Variance Check
 
-The training data was split in 90/10 train and validation set using stratified shuffled sampling. The hyper-parameters were tuned on this validation split. In this section we calculate the variance in performance of the hyper-parameters on other CV folds. We split the data in 10 folds to test the variance.
+In this section we calculate the variance in performance of the DeepSol models on 10-fold cross-validation folds. 
 
 For CPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data`
 
 For GPU, run `./run.sh --model deepsol1 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
 
 The results corresponding to `--mode cv` will also be saved in `results/reports/` folder.
-
