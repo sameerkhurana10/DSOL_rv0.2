@@ -42,7 +42,7 @@ The recipe supports gpu usage using the option `--device cuda`, if you may wish.
 
 ## CPU
 
-Use the following command:
+Use the following command to build the training model:
 
 `./run.sh --model deepsol1 --stage 1 --mode train --device cpu data/protein.data`
 
@@ -72,7 +72,7 @@ We also tested on Nvidia Tesla K20Xm : https://www.techpowerup.com/gpudb/1884/te
 
 ### Run on GPU
 
-Use the following command:
+Use the following command to build the training model:
 
 `./run.sh --model deepsol1 --stage 1 --mode train --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
 
