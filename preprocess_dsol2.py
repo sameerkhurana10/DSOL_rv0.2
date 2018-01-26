@@ -29,17 +29,17 @@ parser.add_argument('-train_src_bio', required=True,
                     help="Path to the training bio source data")
 parser.add_argument('-train_tgt', required=True,
                     help="Path to the training target data")
-parser.add_argument('-valid_src', required=False,
+parser.add_argument('-valid_src', required=True,
                     help="Path to the validation source data")
-parser.add_argument('-valid_src_bio', required=False,
+parser.add_argument('-valid_src_bio', required=True,
                     help="Path to the validation bio source data")
-parser.add_argument('-valid_tgt', required=False,
+parser.add_argument('-valid_tgt', required=True,
                     help="Path to the validation target data")
-parser.add_argument('-test_src', required=False,
+parser.add_argument('-test_src', required=True,
                     help="Path to the test source data")
-parser.add_argument('-test_src_bio', required=False,
+parser.add_argument('-test_src_bio', required=True,
                     help="Path to the test bio source data")
-parser.add_argument('-test_tgt', required=False,
+parser.add_argument('-test_tgt', required=True,
                     help="Path to the target data")
 parser.add_argument('-save_data', required=True,
                     help="Output file for the prepared data")
@@ -185,50 +185,26 @@ def make_data(src_file, src_file_bio, tgt_file, train=False):
 
 def main():
 
-    train = {}
     print('Preparing training ...')
-    train['src'], train['src_bio'], train['tgt'] = make_data(opt.train_src, opt.train_src_bio, opt.train_tgt,train=True)
-    
+    train = {}
+    train['src'], train['src_bio'], train['tgt'] = make_data(opt.train_src, opt.train_src_bio, opt.train_tgt,
+                                                                train=True)
+
+    print('Preparing validation ...')
     valid = {}
-    if (opt.valid_src!=None and opt.valid_src_bio!=None and opt.valid_tgt!=None):
-	print('Preparing validation ...')
-	valid['src'], valid['src_bio'], valid['tgt'] = make_data(opt.valid_src, opt.valid_src_bio, opt.valid_tgt)
-    
+    valid['src'], valid['src_bio'], valid['tgt'] = make_data(opt.valid_src, opt.valid_src_bio, opt.valid_tgt)
+
+    print('Preparing Test ...')
     test = {}
-    if (opt.test_src!=None and opt.test_src_bio!=None and opt.test_tgt!=None):
-	print('Preparing Test ...')
-	test['src'], test['src_bio'], test['tgt'] = make_data(opt.test_src, opt.test_src_bio, opt.test_tgt)
+    test['src'], test['src_bio'], test['tgt'] = make_data(opt.test_src, opt.test_src_bio, opt.test_tgt)
 
-    print('Saving data to \'' + opt.save_data + '.data\'...')
-    save_data = {'train': train,'valid': valid,'test': test}
-    
-    with open(opt.save_data + '.data', 'wb') as handle:
-    	pickle.dump(save_data, handle)
+    print('Saving data to \'' + opt.save_data + '\'...')
+    save_data = {'train': train,
+                 'valid': valid,
+                 'test': test}
 
-
-
-#def main():
-#
-#    print('Preparing training ...')
-#    train = {}
-#    train['src'], train['src_bio'], train['tgt'] = make_data(opt.train_src, opt.train_src_bio, opt.train_tgt,
-#                                                                train=True)
-#
-#    print('Preparing validation ...')
-#    valid = {}
-#    valid['src'], valid['src_bio'], valid['tgt'] = make_data(opt.valid_src, opt.valid_src_bio, opt.valid_tgt)
-#
-#    print('Preparing Test ...')
-#    test = {}
-#    test['src'], test['src_bio'], test['tgt'] = make_data(opt.test_src, opt.test_src_bio, opt.test_tgt)
-#
-#    print('Saving data to \'' + opt.save_data + '\'...')
-#    save_data = {'train': train,
-#                 'valid': valid,
-#                 'test': test}
-#
-#    with open(opt.save_data, 'wb') as handle:
-#        pickle.dump(save_data, handle)
+    with open(opt.save_data, 'wb') as handle:
+        pickle.dump(save_data, handle)
 
 
 if __name__ == "__main__":
