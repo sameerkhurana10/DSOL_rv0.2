@@ -7,7 +7,7 @@ Protein solubility can be a decisive factor in both research and production effi
 
 ## Installation
 
-# Requirements
+### Requirements
 
 This step will install all the dependencies required for running DeepSol in an Anaconda virtual environment locally. You do not need sudo permissions for this step.
 
@@ -28,7 +28,7 @@ This step will install all the dependencies required for running DeepSol in an A
 
 All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`.
 
-# Recipe for running DeepSol
+### Recipe for running DeepSol
 
 Recipe is contained in the script `run.sh`. To see the options run `./run.sh` and you shall see the following:
 
@@ -52,7 +52,7 @@ We provide support for gpu usage using the option `--device cuda`. More details 
 
 ## CPU
 
-# Train New Models
+### Train New Models
 
 Train DeepSol models using pre-compiled training, validation data and optimal hyper-parameter setting as in `parameters.json` file:
 
@@ -63,7 +63,7 @@ Result will be a model named `deepsol1` or `deepsol2` stored in `results/models/
 
 Note that we used `--model deepsol2`, you can use `deepsol3` for 2. Ignore `UserWarning` at the output.
 
-# Test Best DeepSol Models
+### Test Best DeepSol Models
 
 Test existing DeepSol models with pre-compiled test data:
 
@@ -87,7 +87,7 @@ Code was tested against GeForce GTX 1080 Nvidia GPUs https://www.nvidia.com/en-u
 
 Code was also tested on Nvidia Tesla K20Xm : https://www.techpowerup.com/gpudb/1884/tesla-k20xm with driver version 375.66.
 
-# Train New Models
+### Train New Models
 
 Train DeepSol models using pre-compiled training, validation data and optimal hyper-parameter setting as in `parameters.json` file:
 
@@ -100,7 +100,7 @@ Note that we used `--model deepsol2`, you can use `deepsol3` for 2. Ignore `User
 
 Also, `--cuda_root` should be the path to your cuda installation. By default it is `/usr/local/cuda`.
 
-# Test Best DeepSol Models
+### Test Best DeepSol Models
 
 Test existing DeepSol models with pre-compiled test data:
 
