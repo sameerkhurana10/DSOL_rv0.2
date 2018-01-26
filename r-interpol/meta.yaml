@@ -1,0 +1,78 @@
+{% set version = '1.3.1' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-interpol
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: Interpol_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/Interpol_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/Interpol/Interpol_{{ version }}.tar.gz
+
+
+  sha256: 56966ce665fc7a5ca55f89db48cf47cd95f062c7f04adab4ef307696ada52895
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+
+requirements:
+  build:
+    - r-base
+
+  run:
+    - r-base
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('Interpol')"  # [not win]
+    - "\"%R%\" -e \"library('Interpol')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=Interpol
+  license: GPL (>= 2)
+  summary: A package for numerical encoding as well as for linear and non-linear interpolation
+    of amino acid sequences.
+  license_family: GPL3
+
+# The original CRAN metadata for this package was:
+
+# Package: Interpol
+# Type: Package
+# Title: Interpolation of amino acid sequences
+# Version: 1.3.1
+# Date: 2011-07-08
+# Author: Dominik Heider, PhD, University of Duisburg-Essen, Germany
+# Maintainer: Dominik Heider <dominik.heider@uni-due.de>
+# Description: A package for numerical encoding as well as for linear and non-linear interpolation of amino acid sequences.
+# License: GPL (>= 2)
+# LazyLoad: yes
+# Depends: R (>= 2.10.0)
+# Repository: CRAN
+# Date/Publication: 2012-10-29 08:57:12
+# Packaged: 2012-10-29 08:57:12 UTC; ripley
+# NeedsCompilation: no
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

@@ -1,45 +1,249 @@
 name: dsol
 channels:
-  - conda-forge
-  - defaults
+- local
+- conda-forge
+- defaults
 dependencies:
-  - ca-certificates=2017.4.17=0
-  - certifi=2017.4.17=py36_0
-  - hdf5=1.8.17=10
-  - mako=1.0.6=py36_0
-  - markupsafe=1.0=py36_0
-  - ncurses=5.9=10
-  - nose=1.3.7=py36_2
-  - openssl=1.0.2k=0
-  - readline=6.2=0
-  - setuptools=33.1.1=py36_0
-  - six=1.10.0=py36_1
-  - sqlite=3.13.0=1
-  - python=3.6.1
-  - tk=8.5.19=1
-  - wheel=0.29.0=py36_0
-  - xz=5.2.2=0
-  - yaml=0.1.6=0
-  - zlib=1.2.11=0
-  - cudnn=5.1=0
-  - libgfortran=3.0.0=1
-  - libgpuarray=0.6.4=0
-  - mkl=2017.0.1=0
-  - numpy=1.12.1=py36_0
-  - pip=9.0.1=py36_0
-  - pygpu=0.6.4=py36_1
-  - pip:
-    - appdirs==1.4.3
-    - h5py==2.7.0
-    - keras==2.0.4
-    - packaging==16.8
-    - protobuf==3.3.0
-    - pyparsing==2.2.0
-    - pyyaml==3.12
-    - scikit-learn==0.18.1
-    - scipy==0.19.0
-    - sklearn==0.0
-    - theano==0.9.0
-    - werkzeug==0.12.2
-prefix: /data/sls/scratch/sameerk/repos/DSOL_rv0.1/anaconda3/envs/dsol
-
+- ca-certificates=2017.4.17=0
+- certifi=2017.4.17=py36_0
+- hdf5=1.8.17=10
+- icu=58.2=0
+- mako=1.0.6=py36_0
+- markupsafe=1.0=py36_0
+- nose=1.3.7=py36_2
+- openssl=1.0.2k=0
+- pip=9.0.1=py36_0
+- setuptools=33.1.1=py36_0
+- six=1.10.0=py36_1
+- wheel=0.29.0=py36_0
+- yaml=0.1.6=0
+- zlib=1.2.11=0
+- binutils_impl_linux-64=2.28.1=h04c84fa_2
+- binutils_linux-64=7.2.0=25
+- bleach=2.1.2=py36_0
+- bzip2=1.0.6=h6d464ef_2
+- cairo=1.14.12=h77bcde2_0
+- cudnn=5.1=0
+- curl=7.55.1=hcb0b314_2
+- decorator=4.2.1=py36_0
+- entrypoints=0.2.3=py36h1aec115_2
+- fontconfig=2.12.4=h88586e7_1
+- freetype=2.8=hab7d2ae_1
+- gcc_impl_linux-64=7.2.0=hc5ce805_2
+- gcc_linux-64=7.2.0=25
+- glib=2.53.6=h5d9569c_2
+- gmp=6.1.2=h6c8ec71_1
+- graphite2=1.3.10=hf63cedd_1
+- gsl=2.2.1=h0c605f7_3
+- gxx_impl_linux-64=7.2.0=hd3faf3d_2
+- gxx_linux-64=7.2.0=25
+- harfbuzz=1.7.4=hc5b324e_0
+- html5lib=1.0.1=py36h2f9c1c0_0
+- ipykernel=4.8.0=py36_0
+- ipython=6.2.1=py36h88c514a_1
+- ipython_genutils=0.2.0=py36hb52b0d5_0
+- jedi=0.11.1=py36_0
+- jinja2=2.10=py36ha16c418_0
+- jpeg=9b=h024ee3a_2
+- jsonschema=2.6.0=py36h006f8b5_0
+- jupyter_client=5.2.2=py36_0
+- jupyter_core=4.4.0=py36h7c827e3_0
+- krb5=1.14.2=hd3fe544_3
+- libedit=3.1=heed3624_0
+- libffi=3.2.1=hd88cf55_4
+- libgcc=7.2.0=h69d50b8_2
+- libgcc-ng=7.2.0=h7cc24e2_2
+- libgfortran=3.0.0=1
+- libgfortran-ng=7.2.0=h9f7466a_2
+- libgpuarray=0.6.4=0
+- libpng=1.6.34=hb9fc6fc_0
+- libsodium=1.0.15=hf101ebd_0
+- libssh2=1.8.0=h8c220ad_2
+- libstdcxx-ng=7.2.0=h7a57d05_2
+- libtiff=4.0.9=h28f6b97_0
+- libxcb=1.12=hcd93eb1_4
+- libxml2=2.9.4=h2e8b1d7_6
+- mistune=0.8.3=py36_0
+- mkl=2017.0.1=0
+- nbconvert=5.3.1=py36hb41ffb7_0
+- nbformat=4.4.0=py36h31c9010_0
+- ncurses=6.0=h9df7e31_2
+- notebook=5.3.1=py36_1
+- numpy=1.12.1=py36_0
+- pandoc=1.19.2.1=hea2e7c5_1
+- pandocfilters=1.4.2=py36ha6701b7_1
+- pango=1.41.0=hd475d92_0
+- parso=0.1.1=py36h35f843b_0
+- pcre=8.41=hc27e229_1
+- pexpect=4.3.1=py36_0
+- pickleshare=0.7.4=py36h63277f8_0
+- pixman=0.34.0=hceecf20_3
+- prompt_toolkit=1.0.15=py36h17d85b1_0
+- ptyprocess=0.5.2=py36h69acd42_0
+- pygments=2.2.0=py36h0d3125c_0
+- pygpu=0.6.4=py36_1
+- python=3.6.3=hc9025b9_1
+- python-dateutil=2.6.1=py36h88d3b88_1
+- pyzmq=16.0.3=py36he2533c7_0
+- r-assertthat=0.2.0=r342h06193eb_0
+- r-backports=1.1.1=r342h9a9f1f2_0
+- r-base=3.4.2=haf99962_0
+- r-base64enc=0.1_3=r342h7c929ec_4
+- r-bh=1.65.0_1=r342h2d7c2ce_0
+- r-bindr=0.1=r342hdee8079_0
+- r-bindrcpp=0.2=r342h4ea5b31_0
+- r-bitops=1.0_6=r342hd891396_4
+- r-boot=1.3_20=r342ha5ac741_0
+- r-broom=0.4.2=r342h90c284a_0
+- r-caret=6.0_77=r342h201f268_0
+- r-catools=1.17.1=r342hf01772b_4
+- r-cellranger=1.1.0=r342h51baf57_0
+- r-class=7.3_14=r342h4797347_4
+- r-cluster=2.0.6=r342hcb72a25_0
+- r-codetools=0.2_15=r342hc9ffb9b_0
+- r-colorspace=1.3_2=r342h81b277d_0
+- r-crayon=1.3.4=r342h0ed458a_0
+- r-curl=3.0=r342hba591e3_0
+- r-cvst=0.2_1=r342h830f301_0
+- r-data.table=1.10.4_1=r342h3908b10_0
+- r-dbi=0.7=r342h835dbd3_0
+- r-ddalpha=1.3.1=r342hd2d3f94_0
+- r-deoptimr=1.0_8=r342h996e1ad_0
+- r-dichromat=2.0_0=r342h341c752_4
+- r-digest=0.6.12=r342hee14287_0
+- r-dimred=0.1.0=r342hb158d3e_0
+- r-doparallel=1.0.11=r342he63a563_0
+- r-dplyr=0.7.4=r342hee63e26_0
+- r-drr=0.0.2=r342h0fe108c_0
+- r-essentials=1.7.0=r342hf65ed6a_0
+- r-evaluate=0.10.1=r342hb679cc2_0
+- r-forcats=0.2.0=r342h5fcb364_0
+- r-foreach=1.4.3=r342h49221b0_4
+- r-foreign=0.8_69=r342hbd6b6bb_0
+- r-formatr=1.5=r342h0e06a18_0
+- r-ggplot2=2.2.1=r342h8b6cf70_0
+- r-gistr=0.4.0=r342h5cd5773_0
+- r-glmnet=2.0_13=r342h0aac7f1_0
+- r-glue=1.1.1=r342h3154e12_0
+- r-gower=0.1.2=r342h54e18f5_0
+- r-gtable=0.2.0=r342h8e3b2c8_0
+- r-haven=1.1.0=r342h8909e7d_0
+- r-hexbin=1.27.1=r342h72fd8d9_4
+- r-highr=0.6=r342h2351100_0
+- r-hms=0.3=r342ha729a9b_0
+- r-htmltools=0.3.6=r342h4080c21_0
+- r-htmlwidgets=0.9=r342h7fcc9b6_0
+- r-httpuv=1.3.5=r342ha5ddd88_0
+- r-httr=1.3.1=r342h7aba7de_0
+- r-ipred=0.9_6=r342h7d58d5b_0
+- r-irdisplay=0.4.4=r342hc31a1b2_0
+- r-irkernel=0.8.9=r342hfe3cb8f_0
+- r-iterators=1.0.8=r342h4caec00_4
+- r-jsonlite=1.5=r342hf92f79e_0
+- r-kernlab=0.9_25=r342hd770e69_0
+- r-kernsmooth=2.23_15=r342hdc3efa4_4
+- r-knitr=1.17=r342h6500ef9_0
+- r-labeling=0.3=r342h7c30189_4
+- r-lattice=0.20_35=r342h0f762c2_0
+- r-lava=1.5.1=r342h598eca9_0
+- r-lazyeval=0.2.0=r342h346dbdc_0
+- r-lubridate=1.6.0=r342h47739ec_0
+- r-magrittr=1.5=r342h895a831_4
+- r-maps=3.2.0=r342h79c810f_0
+- r-markdown=0.8=r342h4cc6e3e_0
+- r-mass=7.3_47=r342hd8605c9_0
+- r-matrix=1.2_11=r342h3a55fe1_0
+- r-mgcv=1.8_22=r342h176cc83_0
+- r-mime=0.5=r342h01856a9_0
+- r-mnormt=1.5_5=r342he1a489d_0
+- r-modelmetrics=1.1.0=r342h5a23eb1_0
+- r-modelr=0.1.1=r342heb933ea_0
+- r-munsell=0.4.3=r342h79883fb_0
+- r-nlme=3.1_131=r342h7f704e8_0
+- r-nnet=7.3_12=r342ha98c111_0
+- r-numderiv=2016.8_1=r342h12eb246_0
+- r-openssl=0.9.7=r342h1e3c16d_0
+- r-pbdzmq=0.2_6=r342h934a24f_0
+- r-pkgconfig=2.0.1=r342h5d9b92e_0
+- r-plogr=0.1_1=r342h6d7f4c2_0
+- r-plyr=1.8.4=r342h876901b_0
+- r-prodlim=1.6.1=r342hd95c883_0
+- r-pryr=0.1.2=r342hf3bf84b_0
+- r-psych=1.7.8=r342h1e2dc86_0
+- r-purrr=0.2.3=r342h7916a1c_0
+- r-quantmod=0.4_11=r342h9c9c021_0
+- r-r6=2.2.2=r342hcc750b5_0
+- r-randomforest=4.6_12=r342h41e62a9_4
+- r-rbokeh=0.5.0=r342h257354a_0
+- r-rcolorbrewer=1.1_2=r342h0dda8fb_0
+- r-rcpp=0.12.13=r342h9f83869_0
+- r-rcpproll=0.2.2=r342hdd0cc16_0
+- r-readr=1.1.1=r342hb25467c_0
+- r-readxl=1.0.0=r342h1e5739b_0
+- r-recipes=0.1.0=r342h0924b81_0
+- r-recommended=3.4.2=h1751db4_0
+- r-rematch=1.0.1=r342he3f91f1_0
+- r-repr=0.12.0=r342hde08b23_0
+- r-reshape2=1.4.2=r342h2e254a0_0
+- r-rlang=0.1.2=r342hc878738_0
+- r-rmarkdown=1.6=r342hacd9e3e_2
+- r-robustbase=0.92_7=r342h6021a74_0
+- r-rpart=4.1_11=r342hd35cc14_0
+- r-rprojroot=1.2=r342hd69aa9e_0
+- r-rvest=0.3.2=r342h8e81af5_0
+- r-scales=0.5.0=r342h876bdd3_0
+- r-selectr=0.3_1=r342hd6c1ff9_0
+- r-sfsmisc=1.1_1=r342hadb04b4_0
+- r-shiny=1.0.5=r342hc0a01ce_0
+- r-sourcetools=0.1.6=r342h519fec0_0
+- r-spatial=7.3_11=r342hff2a1d0_4
+- r-stringi=1.1.6=r342hf484d3e_0
+- r-stringr=1.2.0=r342h701d218_0
+- r-survival=2.41_3=r342hac888f2_0
+- r-tibble=1.3.4=r342h041fa31_0
+- r-tidyr=0.7.1=r342h1bc61e7_0
+- r-tidyselect=0.2.2=r342h04f720c_0
+- r-tidyverse=1.1.1=r342hf9e2102_0
+- r-timedate=3012.100=r342h48d2e88_4
+- r-ttr=0.23_2=r342hf82c04a_0
+- r-uuid=0.1_2=r342h1393287_4
+- r-viridislite=0.2.0=r342h3706391_0
+- r-withr=2.0.0=r342hfa1897f_0
+- r-xml2=1.1.1=r342h3ff9a91_0
+- r-xtable=1.8_2=r342hb75f6e7_0
+- r-xts=0.10_0=r342h17852d6_4
+- r-yaml=2.1.14=r342h72d8650_0
+- r-zoo=1.8_0=r342h9faeba2_0
+- readline=7.0=ha6073c6_4
+- send2trash=1.4.2=py36_0
+- simplegeneric=0.8.1=py36h2cb9092_0
+- sqlite=3.21.0=h1bed415_0
+- terminado=0.8.1=py36_0
+- testpath=0.3.1=py36h8cadb63_0
+- tk=8.6.7=hc745277_3
+- tornado=4.5.3=py36_0
+- traitlets=4.3.2=py36h674d592_0
+- wcwidth=0.1.7=py36hdf4376a_0
+- webencodings=0.5.1=py36h800622e_1
+- xz=5.2.3=h55aa19d_2
+- zeromq=4.2.2=hbedb6e5_2
+- r-bio3d=2.3_3=r34h0758ead_0
+- r-interpol=1.3.1=r34h7cc381d_0
+- pip:
+  - appdirs==1.4.3
+  - h5py==2.7.0
+  - ipython-genutils==0.2.0
+  - jupyter-client==5.2.2
+  - jupyter-core==4.4.0
+  - keras==2.0.4
+  - packaging==16.8
+  - prompt-toolkit==1.0.15
+  - protobuf==3.3.0
+  - pyparsing==2.2.0
+  - pyyaml==3.12
+  - scikit-learn==0.18.1
+  - scipy==0.19.0
+  - sklearn==0.0
+  - theano==0.9.0
+  - werkzeug==0.12.2
+prefix: /home/local/QCRI/rmall/anaconda3/envs/dsol
