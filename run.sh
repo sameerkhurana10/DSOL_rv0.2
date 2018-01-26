@@ -49,34 +49,34 @@ fi
 
 
 
-if [ $stage -le 1 ] ; then
+if [ $stage == 1 ] ; then
     echo "++++++++++++++++++++ DATA PREPARATION ++++++++++++++++++++"
     if [[ $model == "deepsol1" ]]; then
-	KERAS_BACKEND=${keras_backend} python preprocess_dsol1.py -train_src data/train_src -train_tgt data/train_tgt -valid_src data/val_src -valid_tgt data/val_tgt -test_src data/test_src -test_tgt data/test_tgt -save_data ${data}
+	KERAS_BACKEND=${keras_backend} python scripts/preprocess_dsol1.py -train_src data/train_src -train_tgt data/train_tgt -valid_src data/val_src -valid_tgt data/val_tgt -test_src data/test_src -test_tgt data/test_tgt -save_data ${data}
     fi
 
     if [[ $model == "deepsol2" || $model == "deepsol3" ]]; then
-	KERAS_BACKEND=${keras_backend} python preprocess_dsol2.py -train_src data/train_src -train_src_bio data/train_src_bio -train_tgt data/train_tgt -valid_src data/val_src -valid_src_bio data/val_src_bio -valid_tgt data/val_tgt -test_src data/test_src -test_src_bio data/test_src_bio -test_tgt data/test_tgt -save_data ${data}
+	KERAS_BACKEND=${keras_backend} python scripts/preprocess_dsol2.py -train_src data/train_src -train_src_bio data/train_src_bio -train_tgt data/train_tgt -valid_src data/val_src -valid_src_bio data/val_src_bio -valid_tgt data/val_tgt -test_src data/test_src -test_src_bio data/test_src_bio -test_tgt data/test_tgt -save_data ${data}
     fi
 fi
 
 
-if [ $stage -le 2 ] ; then
+if [ $stage == 2 ] ; then
     
     if [[ "$mode" == "train" ]] ; then
 
 	echo "++++++++++++++++++++ BUILDING NEW MODELS ++++++++++++++++++++"
 
 	if [[ $model == "deepsol1" ]]; then
-	    KERAS_BACKEND=${keras_backend} python main_dsol1.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
+	    KERAS_BACKEND=${keras_backend} python scripts/main_dsol1.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
 	fi
 
 	if [[ $model == "deepsol2" ]]; then
-	    KERAS_BACKEND=${keras_backend} python main_dsol2.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
+	    KERAS_BACKEND=${keras_backend} python scripts/main_dsol2.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
 	fi
 
 	if [[ $model == "deepsol3" ]]; then
-	    KERAS_BACKEND=${keras_backend} python main_dsol1.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
+	    KERAS_BACKEND=${keras_backend} python scripts/main_dsol3.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
 	fi
     fi
     
@@ -84,11 +84,11 @@ if [ $stage -le 2 ] ; then
 
 	echo "++++++++++++++++++++ DECODING USING EXISTING MODELS ++++++++++++++++++++"
 	
-	KERAS_BACKEND=${keras_backend} python decoder.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
+	KERAS_BACKEND=${keras_backend} python scripts/decoder.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
     fi
 
     if [[ "$mode" == "cv" ]]; then
-    	KERAS_BACKEND=${keras_backend} python cross_validation.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
+    	KERAS_BACKEND=${keras_backend} python scripts/cross_validation.py -model ${model} -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
     fi
 
 fi

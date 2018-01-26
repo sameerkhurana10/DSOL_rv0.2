@@ -1,32 +1,41 @@
-# DeepSol: A Deep Learning Framework for Sequence-Based Protein Solubility Prediction
+### DeepSol: A Deep Learning Framework for Sequence-Based Protein Solubility Prediction
 
 ![alt text](http://people.csail.mit.edu/sameerk/dsol.svg)
 
-# Setting up the environment:
+## Motivation
+Protein solubility can be a decisive factor in both research and production efficiency. Novel in silico, accurate, sequence-based protein solubility predictors are highly sought.
+
+## Installation
+
+# Requirements
 
 This step will install all the dependencies required for running DeepSol in an Anaconda virtual environment locally. You do not need sudo permissions for this step.
 
-## Install Anaconda
-1. Download Anaconda (64 bit) installer python3.* for linux : https://www.anaconda.com/download/#linux
-2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location
+  - Install Anaconda
+    1. Download Anaconda (64 bit) installer python3.x for linux : https://www.anaconda.com/download/#linux
+    2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location
+    3. Run `conda update conda`
 
-## Create the environment
-1. Run `git clone https://github.com/sameerkhurana10/DSOL_rv0.2.git`
-2. Run `cd DSOL_rv0.2`
-3. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
-4. Run `conda env create -f environment.yml`
-5. Run `source activate dsol`
+  - Creating the environment 
+    1. Run `git clone https://github.com/sameerkhurana10/DSOL_rv0.2.git`
+    2. Run `cd DSOL_rv0.2`
+    3. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
+    4. Run `conda env create -f environment.yml`
+    5. Run `source activate dsol`
+  
+  - SCRATCH (version SCRATCH-1D release 1.1) (http://scratch.proteomics.ics.uci.edu, Downloads: http://download.igb.uci.edu/#sspro)
+
 
 All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`.
 
-# Recipe for running DeepSol:
+# Recipe for running DeepSol
 
 Recipe is contained in the script `run.sh`. To see the options run `./run.sh` and you shall see the following:
 
 ```
 main options (for others, see top of script file)
-  --model (deepsol1/deepsol2|deepsol3)               # model architecture to use
-  --mode  (train/decode/cv)                          # train up a new model or use an existing model
+  --model (deepsol1/deepsol2/deepsol3)               # model architecture to use
+  --mode  (preprocess/train/decode/cv)                     # data preparation or decode or cross-validate using an existing model
   --stage (1/2)                                      # point to run the script from 
   --conf_file                                        # model parameter file
   --keras_backend                                    # backend for keras
@@ -36,72 +45,87 @@ main options (for others, see top of script file)
 There are two stages in the script. 
 
 1. Data preparation
-2. Model building and decoding, `--mode train`, or decoding using existing model `--mode decode`. Information about `--mode cv` is given in "parameter variance check" section.
+2. Model building with `--mode train` and decoding with best DeepSol models using `--mode decode`. Information about `--mode cv` is given in "parameter variance check" section.
 
-The recipe supports gpu usage using the option `--device cuda`, if you may wish. More details in the GPU section. Rest of the options can be modified as desired.
+We provide support for gpu usage using the option `--device cuda`. More details in the GPU section.
+
 
 ## CPU
 
-Use the following command to build the training model:
+# Train New Models
 
-`./run.sh --model deepsol1 --stage 1 --mode train --device cpu data/protein.data`
+Train DeepSol models using pre-compiled training, validation data and optimal hyper-parameter setting as in `parameters.json` file:
 
-The result corresponding to `--mode train` will be a model named `deepsol1` which will be stored in `results/models/` folder. Note that we used `--model deepsol1`, you can use `deepsol2` or `deepsol3`. Moreover, you might see some `UserWarning` which can be ignored.
+  1. `./run.sh --model deepsol1 --stage 2 --mode train --device cpu data/protein.data` 
+  2. `./run.sh --model deepsol2 --stage 2 --mode train --device cpu data/protein_with_bio.data`
 
-In case you want to use the existing models for just testing, we have provided them in the folder `results/models` to decode the data. You can run the following command:
+Result will be a model named `deepsol1` or `deepsol2` stored in `results/models/`. 
 
-`./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/protein.data` or
+Note that we used `--model deepsol2`, you can use `deepsol3` for 2. Ignore `UserWarning` at the output.
 
-`./run.sh --model deepsol2 --stage 2 --mode decode --device cpu data/protein_with_bio.data` or
+# Test Best DeepSol Models
 
-`./run.sh --model deepsol3 --stage 2 --mode decode --device cpu data/protein_with_bio.data`
+Test existing DeepSol models with pre-compiled test data:
 
-The results corresponding to `--mode decode` will be saved in `results/reports/` folder. Note that we used `--stage 2` because we do not want to perform model building in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
+  1. `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/protein.data`
+  2. `./run.sh --model deepsol2 --stage 2 --mode decode --device cpu data/protein_with_bio.data` 
+
+Result will be saved in `results/reports/`.
+
+Note that we used `--model deepsol2`, you can use `deepsol3` for 2. 
+
 
 ## GPU
 
 ### Cuda installation
 
-First ensure that you have cuda installed. We support Cuda 8.0 and Cudnn 5.1 . If you use any other version of Cudnn, you might run into some issues.
+Ensure that cuda is installed. We support Cuda 8.0 and Cudnn 5.1 . For any other version of Cudnn, you might run into some issues.
 
 Install Cuda 8.0 and Cudnn 5.1 from https://developer.nvidia.com/
 
-We tested our code against GeForce GTX 1080 Nvidia GPUs https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/ . The GPU driver version is 384.59.
+Code was tested against GeForce GTX 1080 Nvidia GPUs https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/ . The GPU driver version is 384.59.
 
-We also tested on Nvidia Tesla K20Xm : https://www.techpowerup.com/gpudb/1884/tesla-k20xm with driver version 375.66.
+Code was also tested on Nvidia Tesla K20Xm : https://www.techpowerup.com/gpudb/1884/tesla-k20xm with driver version 375.66.
 
-### Run on GPU
+# Train New Models
 
-Use the following command to build the training model:
+Train DeepSol models using pre-compiled training, validation data and optimal hyper-parameter setting as in `parameters.json` file:
 
-`./run.sh --model deepsol1 --stage 1 --mode train --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
+  1. `./run.sh --model deepsol1 --stage 2 --mode train --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
+  2. `./run.sh --model deepsol2 --stage 2 --mode train --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data`.
 
-Note that we used `--model deepsol1`. you can use `deepsol2` or `deepsol3`. Also, `--cuda_root` should be the path to your cuda installation. By default it is `/usr/local/cuda`.
+Result will be a model named `deepsol1` or `deepsol2` stored in `results/models`.
 
-In case you want to use the existing models for just testing, we have provided them in the folder `results/models/` to decode the data. You can run the following command:
+Note that we used `--model deepsol2`, you can use `deepsol3` for 2. Ignore `UserWarning` at the output.
 
-`./run.sh --model deepsol1 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data` or
+Also, `--cuda_root` should be the path to your cuda installation. By default it is `/usr/local/cuda`.
 
-`./run.sh --model deepsol2 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data` or
+# Test Best DeepSol Models
 
-`./run.sh --model deepsol3 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data` 
+Test existing DeepSol models with pre-compiled test data:
 
-Note that we use `--stage 2` because we do not want to perform model building in this case. We already have the model to decode namely `deepsol1`, provided at `results/models/deepsol1`. The same follows for the models `deepsol2` and `deepsol3`.
+  1. `./run.sh --model deepsol1 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data`
+  2. `./run.sh --model deepsol2 --stage 2 --mode decode --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data`.
+
+Result will be saved in `results/reports/`.
+
+Note that we used `--model deepsol2`, you can use `deepsol3` for 2. 
+
 
 ## Parameter Variance Check
 
-In this section we calculate the variance in performance of the DeepSol models on 10 cross-validation folds. 
+In this section we calculate the variance in performance of the DeepSol models on 10 cross-validation folds for dataset used in our paper.
 
 For CPU: 
 
-run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data` or
-
-run `./run.sh --model deepsol2 --stage 2 --mode cv --device cpu data/protein_with_bio.data`
+  1. run `./run.sh --model deepsol1 --stage 2 --mode cv --device cpu data/protein.data`
+  2. run `./run.sh --model deepsol2 --stage 2 --mode cv --device cpu data/protein_with_bio.data`
 
 For GPU:
 
-run `./run.sh --model deepsol1 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data` or
+  1. run `./run.sh --model deepsol1 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein.data` 
+  2. run `./run.sh --model deepsol2 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data`
 
-run `./run.sh --model deepsol2 --stage 2 --mode cv --cuda_root <path-to-your-cuda-installation> --device cuda data/protein_with_bio.data`
+Result will be saved in `results/reports/`.
 
-The results corresponding to `--mode cv` will also be saved in `results/reports/` folder.
+Note that we used `--model deepsol2`, you can use `deepsol3` for 2. 

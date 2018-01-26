@@ -29,11 +29,11 @@ parser.add_argument('-train_tgt', required=True,
                     help="Path to the training target data")
 parser.add_argument('-valid_src', required=True,
                     help="Path to the validation source data")
-parser.add_argument('-valid_tgt', required=True,
+parser.add_argument('-valid_tgt', required=False,
                     help="Path to the validation target data")
-parser.add_argument('-test_src', required=True,
+parser.add_argument('-test_src', required=False,
                     help="Path to the validation source data")
-parser.add_argument('-test_tgt', required=True,
+parser.add_argument('-test_tgt', required=False,
                     help="Path to the validation target data")
 parser.add_argument('-save_data', required=True,
                     help="Output file for the prepared data")
@@ -181,13 +181,15 @@ def main():
     train['src'], train['tgt'] = make_data(opt.train_src, opt.train_tgt,
                                            train=True)
 
-    print('Preparing validation ...')
     valid = {}
-    valid['src'], valid['tgt'] = make_data(opt.valid_src, opt.valid_tgt)
+    if (opt.valid_src!=None and opt.valid_tgt!=None):
+	print('Preparing validation ...')
+    	valid['src'], valid['tgt'] = make_data(opt.valid_src, opt.valid_tgt)
 
-    print('Preparing Test ...')
     test = {}
-    test['src'], test['tgt'] = make_data(opt.test_src, opt.test_tgt)
+    if (opt.test_src!=None and opt.test_tgt!=None):
+    	print('Preparing Test ...')
+    	test['src'], test['tgt'] = make_data(opt.test_src, opt.test_tgt)
 
     print('Saving data to \'' + opt.save_data + '\'...')
     save_data = {'train': train,
