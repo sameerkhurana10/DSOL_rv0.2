@@ -6,7 +6,10 @@ library( bio3d )
 library( stringr )
 library( Interpol )
 library( zoo )
+library( data.table )
+library( doMC )
 
+setwd('.')
 
 #==================================================
 #==================================================
@@ -15,13 +18,13 @@ library( zoo )
 
 #==================================================
 # Calculate features for test sequence
-PaRSnIP.calc.features.RSAhydro.test <- function( vec.seq,
+PaRSnIP.calc.features.test <- function( vec.seq,
                                                  SCRATCH.path,
                                                  output_prefix,
                                                  AA = unlist( strsplit("ACDEFGHIKLMNPQRSTVWY",split = "" ) ),
                                                  SS.3 = unlist( strsplit("CEH",split = "" ) ),
                                                  SS.8 = unlist( strsplit("BCEGHIST",split = "" ) ),
-                                                 n.cores = 1 )
+                                                 n.cores = no_cores)
 {
   #==================================================
   # Preprocess sequence
@@ -304,9 +307,9 @@ PaRSnIP.calc.features.RSAhydro.test <- function( vec.seq,
                      var.gravy,
                      var.ali,
                      var.ch,
-                     vec.AA.freq,
-                     vec.dipep.freq,
-                     vec.tripep.freq,
+                     #vec.AA.freq,
+                     #vec.dipep.freq,
+                     #vec.tripep.freq,
                      vec.ss.freq,
                      vec.ss8.freq,
                      vec.acc.20.final,
@@ -322,7 +325,7 @@ PaRSnIP.calc.features.RSAhydro.test <- function( vec.seq,
 run.SCRATCH <- function( vec.seq,
                          SCRATCH.path,
                          output_prefix,
-                         n.cores = 1 )
+                         n.cores = no_cores )
 {
   # Sequence file (FASTA format)
   file.fasta <- paste( output_prefix,
@@ -349,7 +352,8 @@ run.SCRATCH <- function( vec.seq,
 
 PaRSnIP <- function( file.test,
                      SCRATCH.path,
-                     file.output )
+                     file.output,
+		     no_cores )
 {
   
   # Load test sequence in fasta format
@@ -359,70 +363,37 @@ PaRSnIP <- function( file.test,
   aln <- read.fasta( file.test )
   aln.ali <- aln$ali
   
-  #==================================================
-  # Calculate features for test sequence
-  print( "==================================================" )
-  print( "Calculate features for test sequence" )
-  
   output_prefix <- tempfile( pattern = "tmp",
-                             fileext = "" )
+                             fileext = "" ) 
+  df_features <- NULL
+  df_seq <- NULL
+  for (i in 1:nrow(aln.ali))
+  {
+    #==================================================
+    # Calculate features for test sequence
+    print( "==================================================" )
+    print( "Calculate features for test sequence" )
   
-  vec.features <- PaRSnIP.calc.features.RSAhydro.test( aln.ali,
+    vec.seq <- paste(aln.ali[i,],collapse="");
+    vec.features <- PaRSnIP.calc.features.test( aln.ali[i,],
                                                        SCRATCH.path,
                                                        output_prefix,
-                                                       n.cores = 32 )
+                                                       n.cores = no_cores )
+    df_features <- rbind(df_features,vec.features)
+    df_seq <- rbind(df_seq,vec.seq)
+  }
+  df_features <- as.data.frame(df_features)
+  df_seq <- as.data.frame(df_seq)  
+ 
   # Save features
-  file.features <- paste( output_prefix,
-                          "_features.txt",
+  file.features <- paste( "data/",file.output,
+                          "_src_bio",
                           sep = "" )
-  write( vec.features,
-         ncolumns = length( vec.features ),
-         file = file.features )
+  write.table( df_features, file = file.features, row.names=F,col.names=F, quote = F, sep="\t")
+  # Save sequences
+  file.seq <- paste("data/",file.output,"_src",sep="")
+  write.table( df_seq, file = file.seq, row.names=F, col.names=F, quote=F);
   
-  #==================================================
-  # Variables h2o and h2o model
-  print( "==================================================" )
-  print( "Load h2o and h2o model" )
-  
-  # Load h2o
-  h2o.init()
-  
-  # Load model
-  gbm.model <- h2o.loadModel( path = file.h2o.model )
-  
-  
-  #==================================================
-  # Load test data and predict solubility
-  print( "==================================================" )
-  print( "Load test data" )
-  
-  MC.path <- file.path(file.features);
-  
-  data.hex <- h2o.importFile( path = MC.path,
-                              destination_frame = "MC.hex" )
-  
-  #==================================================
-  # Predict
-  print( "==================================================" )
-  print( "Predict solubility" )
-  
-  y.predict.raw <- h2o.predict( gbm.model,
-                                data.hex )
-  var.raw <- as.numeric( as.vector( y.predict.raw$p1 ) )
-  metrics_df <- gbm.model@model$training_metrics@metrics$max_criteria_and_metric_scores
-  threshold <- metrics_df[ metrics_df$metric == "max accuracy", ]$threshold
-  var.prob <- round( get.probabilities( var.raw,
-                                        threshold ),
-                     4 )
-  
-  #==================================================
-  # Save prediction values
-  print( "==================================================" )
-  print( "Save prediction values" )
-  
-  write( paste( "Probabililty to be soluble:",
-                var.prob ),
-         file = file.output )
 }
 
 
@@ -444,8 +415,10 @@ if( is.na( file.output ) )
 }
 
 #==================================================
+registerDoMC(no_cores)
+
 # Run PaRSnIP
 PaRSnIP( file.test,
          SCRATCH.path,
-         file.h2o.model,
-         file.output )
+         file.output,
+         no_cores)

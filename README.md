@@ -33,14 +33,30 @@ This step will install all the dependencies required for running DeepSol in an A
 
 All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`.
 
-### Recipe for running DeepSol
+## Run on New Test file
+
+Four arguments are necessary to run the software to obtain biological features for new test file. 
+
+  1. Protein sequence/sequences of interest in fasta format (https://en.wikipedia.org/wiki/FASTA_format).
+  2. SCRATCH run path (usually it is in the directory where you installed SCRATCH adding the following: SCRATCH-1D_1.1/bin/run_SCRATCH-1D_predictors.sh)
+  3. Name of the output file
+  4. Number of processors to use to obtain biological features in parallel.
+
+### Execute in the command line
+ 
+  1. `R --vanilla < scripts/PaRSnIP.R data/Seq_solo.fasta <path-to-your-scratch-installation>/SCRATCH-1D_1.1/bin/run_SCRATCH-1D_predictors.sh new_test 32`
+
+Result will be stored in `data` folder in 2 parts: a) Sequence as `new_test_src` and b) Biological features as `new_test_src_bio`.
+
+
+## Recipe for running DeepSol
 
 Recipe is contained in the script `run.sh`. To see the options run `./run.sh` and you shall see the following:
 
 ```
 main options (for others, see top of script file)
   --model (deepsol1/deepsol2/deepsol3)               # model architecture to use
-  --mode  (preprocess/train/decode/cv)                     # data preparation or decode or cross-validate using an existing model
+  --mode  (preprocess/train/decode/cv)               # data preparation or decode or cross-validate using an existing model
   --stage (1/2)                                      # point to run the script from 
   --conf_file                                        # model parameter file
   --keras_backend                                    # backend for keras
@@ -53,7 +69,6 @@ There are two stages in the script.
 2. Model building with `--mode train` and decoding with best DeepSol models using `--mode decode`. Information about `--mode cv` is given in "parameter variance check" section.
 
 We provide support for gpu usage using the option `--device cuda`. More details in the GPU section.
-
 
 ## CPU
 
