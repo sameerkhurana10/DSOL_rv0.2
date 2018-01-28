@@ -14,14 +14,19 @@ This step will install all the dependencies required for running DeepSol in an A
   - Install Anaconda
     1. Download Anaconda (64 bit) installer python3.x for linux : https://www.anaconda.com/download/#linux
     2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location
-    3. Run `conda update conda`
 
-  - Creating the environment 
+  - Next creating the environment 
     1. Run `git clone https://github.com/sameerkhurana10/DSOL_rv0.2.git`
     2. Run `cd DSOL_rv0.2`
     3. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
     4. Run `conda env create -f environment.yml`
     5. Run `source activate dsol`
+
+  - Finally, R requirements
+    -  R libraries
+       1.  Interpol (Run `R` and do `install.packages('Interpol')` )
+       2.  bio3d    (Run `R` and do `install.packages('bio3d')` )
+       3.  doMC     (Run `R` and do `install.packages('doMC')`)
   
   - SCRATCH (version SCRATCH-1D release 1.1) (http://scratch.proteomics.ics.uci.edu, Downloads: http://download.igb.uci.edu/#sspro)
 
