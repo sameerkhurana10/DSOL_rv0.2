@@ -50,11 +50,12 @@ Result will be stored in `data` folder in 2 parts: a) Sequence as `new_test_src`
   
   2. `./run.sh --model deepsol1 --stage 1 --mode preprocess --device cpu --test_file new_test data/newtest.data`
 
-Preprocesses the test data `new_test` and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`.
+Preprocesses data `new_test` and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`.
 
   3. `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/newtest.data`
 
 Result will be saved in `results/reports/`. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`. 
+
 
 
 # Recipe for running DeepSol (For all experiments reported in the manuscript)

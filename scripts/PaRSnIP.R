@@ -387,6 +387,7 @@ PaRSnIP <- function( file.test,
 	}
     }
     print(paste0("Break point is: ",j))
+    if (j==1) { j=0 }
     new.seq <- aln.ali[i,(1:(length(aln.ali[i,])-j))];
  
     vec.seq <- paste(new.seq,collapse="");
