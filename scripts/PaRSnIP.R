@@ -367,24 +367,45 @@ PaRSnIP <- function( file.test,
                              fileext = "" ) 
   df_features <- NULL
   df_seq <- NULL
+  df_tgt <- NULL
   for (i in 1:nrow(aln.ali))
   {
     #==================================================
     # Calculate features for test sequence
     print( "==================================================" )
     print( "Calculate features for test sequence" )
-  
-    vec.seq <- paste(aln.ali[i,],collapse="");
-    vec.features <- PaRSnIP.calc.features.test( aln.ali[i,],
+    
+    for (j in 1:length(aln.ali[i,])) 
+    {
+	if (aln.ali[i,length(aln.ali[i,])]!="-")
+	{
+		break;
+	}
+        else if (aln.ali[i,length(aln.ali[i,])-j]!='-')
+	{
+		break;
+	}
+    }
+    print(paste0("Break point is: ",j))
+    new.seq <- aln.ali[i,(1:(length(aln.ali[i,])-j))];
+ 
+    vec.seq <- paste(new.seq,collapse="");
+    print(paste0("Sequence is: ",vec.seq));
+    dummy_class <- 0
+
+    vec.features <- PaRSnIP.calc.features.test( new.seq,
                                                        SCRATCH.path,
                                                        output_prefix,
                                                        n.cores = no_cores )
+    vec.features <- c(vec.features,dummy_class)
     df_features <- rbind(df_features,vec.features)
     df_seq <- rbind(df_seq,vec.seq)
+    df_tgt <- rbind(df_tgt,dummy_class)
   }
   df_features <- as.data.frame(df_features)
   df_seq <- as.data.frame(df_seq)  
- 
+  df_tgt <- as.data.frame(df_tgt)
+   
   # Save features
   file.features <- paste( "data/",file.output,
                           "_src_bio",
@@ -393,7 +414,9 @@ PaRSnIP <- function( file.test,
   # Save sequences
   file.seq <- paste("data/",file.output,"_src",sep="")
   write.table( df_seq, file = file.seq, row.names=F, col.names=F, quote=F);
-  
+  # Save dummy tgt
+  file.tgt <- paste("data/",file.output,"_tgt",sep="")
+  write.table( df_tgt, file=file.tgt, row.names=F, col.names=F, quote=F);
 }
 
 

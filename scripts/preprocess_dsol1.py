@@ -3,6 +3,8 @@ Copyright 2017, Sameer Khurana, All rights reserved.
 """
 
 # Code based on https://github.com/OpenNMT/OpenNMT-py/blob/master/preprocess.py
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
 
 import pickle
 import numpy as np
@@ -183,13 +185,13 @@ def main():
 
     valid = {}
     if (opt.valid_src!=None and opt.valid_tgt!=None):
-	print('Preparing validation ...')
-    	valid['src'], valid['tgt'] = make_data(opt.valid_src, opt.valid_tgt)
+        print('Preparing validation ...')
+        valid['src'], valid['tgt'] = make_data(opt.valid_src, opt.valid_tgt)
 
     test = {}
     if (opt.test_src!=None and opt.test_tgt!=None):
-    	print('Preparing Test ...')
-    	test['src'], test['tgt'] = make_data(opt.test_src, opt.test_tgt)
+        print('Preparing Test ...')
+        test['src'], test['tgt'] = make_data(opt.test_src, opt.test_tgt)
 
     print('Saving data to \'' + opt.save_data + '\'...')
     save_data = {'train': train,

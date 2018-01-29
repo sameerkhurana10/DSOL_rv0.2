@@ -5,7 +5,7 @@
 ## Motivation
 Protein solubility can be a decisive factor in both research and production efficiency. Novel in silico, accurate, sequence-based protein solubility predictors are highly sought.
 
-## Installation
+# Installation
 
 ### Requirements
 
@@ -33,7 +33,7 @@ This step will install all the dependencies required for running DeepSol in an A
 
 All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`.
 
-## Run on New Test file
+# Run on New Test file
 
 Four arguments are necessary to run the software to obtain biological features for new test file. 
 
@@ -47,9 +47,17 @@ Four arguments are necessary to run the software to obtain biological features f
   1. `R --vanilla < scripts/PaRSnIP.R data/Seq_solo.fasta <path-to-your-scratch-installation>/SCRATCH-1D_1.1/bin/run_SCRATCH-1D_predictors.sh new_test 32`
 
 Result will be stored in `data` folder in 2 parts: a) Sequence as `new_test_src` and b) Biological features as `new_test_src_bio`.
+  
+  2. `./run.sh --model deepsol1 --stage 1 --mode preprocess --device cpu --test_file new_test data/newtest.data`
+
+Preprocesses the test data `new_test` and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`.
+
+  3. `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/newtest.data`
+
+Result will be saved in `results/reports/`. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`. 
 
 
-## Recipe for running DeepSol
+# Recipe for running DeepSol (For all experiments reported in the manuscript)
 
 Recipe is contained in the script `run.sh`. To see the options run `./run.sh` and you shall see the following:
 
@@ -62,10 +70,11 @@ main options (for others, see top of script file)
   --keras_backend                                    # backend for keras
   --cuda_root                                        # the path cuda installation
   --device (cuda/cpu)                                # device to use for running the recipe
+  --test_file                                        # name of the new test file
 ```
 There are two stages in the script. 
 
-1. Data preparation
+1. Data preparation as demonstrated with new test data.
 2. Model building with `--mode train` and decoding with best DeepSol models using `--mode decode`. Information about `--mode cv` is given in "parameter variance check" section.
 
 We provide support for gpu usage using the option `--device cuda`. More details in the GPU section.
