@@ -192,7 +192,6 @@ def main():
 
     valid = {}
     if (opt.valid_src!=None and opt.valid_src_bio!=None and opt.valid_tgt!=None):
-<<<<<<< HEAD
         print('Preparing validation ...')
         valid['src'], valid['src_bio'], valid['tgt'] = make_data(opt.valid_src, opt.valid_src_bio, opt.valid_tgt)
 
@@ -200,16 +199,7 @@ def main():
     if (opt.test_src!=None and opt.test_src_bio!=None and opt.test_tgt!=None):
         print('Preparing Test ...')
         test['src'], test['src_bio'], test['tgt'] = make_data(opt.test_src, opt.test_src_bio, opt.test_tgt)
-=======
-		print('Preparing validation ...')
-		valid['src'], valid['src_bio'], valid['tgt'] = make_data(opt.valid_src, opt.valid_src_bio, opt.valid_tgt)
-
-    test = {}
-    if (opt.test_src!=None and opt.test_src_bio!=None and opt.test_tgt!=None):
-		print('Preparing Test ...')
-		test['src'], test['src_bio'], test['tgt'] = make_data(opt.test_src, opt.test_src_bio, opt.test_tgt)
->>>>>>> 98dca7bd1e1182e31a768b5fe2be3b2a9001d76f
-
+    
     print('Saving data to \'' + opt.save_data + '\'...')
     save_data = {'train': train,
                  'valid': valid,
