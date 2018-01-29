@@ -124,7 +124,7 @@ def main():
         dynamic_args['num_classes'] = len(set(y_train))
         
         x_train = np.array(utils.pad_sequecnes(x_train, static_args.maxlen))
-        x_train_bio = np.array(x_train_bio)[:, :-1]
+        x_train_bio = np.array(x_train_bio)[:,:-1] 
         dynamic_args['num_bio_feats'] = int(x_train_bio.shape[1])
         
         y_train = utils.get_one_hot(y_train, dynamic_args['num_classes'])

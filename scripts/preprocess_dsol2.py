@@ -171,12 +171,14 @@ def make_data(src_file, src_file_bio, tgt_file, train=False):
     src_bio = np.loadtxt(src_file_bio)
         
     if opt.shuffle == 1:
-        print('... shuffling sequences')
-        perm = np.random.permutation(len(src))
-        src = [src[idx] for idx in perm]
-        src_bio = [src_bio[idx] for idx in perm]
-        tgt = [tgt[idx] for idx in perm]
-
+        if (len(src)>1):
+            print('... shuffling sequences')
+            perm = np.random.permutation(len(src))
+            src = [src[idx] for idx in perm]
+            src_bio = [src_bio[idx] for idx in perm]
+            tgt = [tgt[idx] for idx in perm]
+        else:
+            src_bio = [src_bio]
     print('Prepared %d sentences' %
           (len(src)))
 
