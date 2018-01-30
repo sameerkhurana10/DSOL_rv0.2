@@ -24,40 +24,40 @@ This step will install all the dependencies required for running DeepSol in an A
     5. Run `source activate dsol`
 
   - R requirements
-    -  R libraries
-       1.  Interpol (Run R: `R` and do `install.packages('Interpol')` )
+    - Run R REPL by running the following: `R`
+    -  Install R libraries
+       1.  Interpol (do `install.packages('Interpol')` )
        2.  bio3d    (do `install.packages('bio3d')` )
        3.  doMC     (do `install.packages('doMC')`)
        
-    Quit R: `quit()` 
+    Quit R REPL: `quit()` 
   
   - SCRATCH (version SCRATCH-1D release 1.1) (http://scratch.proteomics.ics.uci.edu, Downloads: http://download.igb.uci.edu/#sspro)
     1. Run `wget http://download.igb.uci.edu/SCRATCH-1D_1.1.tar.gz`
     2. Run `tar -xvzf SCRATCH-1D_1.1.tar.gz`
     3. Run `cd SCRATCH-1D_1.1`
     4. Run `perl install.pl`
+    5.Go back to the project root directory: `cd ..`
 
 
-All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`.
+All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`. Make sure you are in the correct directory before proceeding
 
-# Run on New Test file
+# Run DeepSol on New Test file
 
-Four arguments are necessary to run the software to obtain biological features for new test file. 
+To run DeepSol on your own protein sequences you need the following two things:
 
-  1. Protein sequence/sequences of interest in fasta format (https://en.wikipedia.org/wiki/FASTA_format).
-  2. SCRATCH run path (usually it is in the directory where you installed SCRATCH adding the following: SCRATCH-1D_1.1/bin/run_SCRATCH-1D_predictors.sh)
-  3. Name of the output file
-  4. Number of processors to use to obtain biological features in parallel.
+  1. Protein Sequence File: Protein sequence/sequences of interest in fasta format (https://en.wikipedia.org/wiki/FASTA_format). We provide `data/Seq_solo.fasta` for our dataset 
+  2. SCRATCH: Software used to extract biological features from a given protein sequence file. Follow instructions in the previous section to Install SCRATCH. If you already have SCRATCH, check that you have the run path (usually it is in the directory where you installed SCRATCH such as: SCRATCH-1D_1.1/bin/run_SCRATCH-1D_predictors.sh)
 
 ### Execute in the command line
  
-  1. `R --vanilla < scripts/PaRSnIP.R data/Seq_solo.fasta <path-to-your-scratch-installation>/SCRATCH-1D_1.1/bin/run_SCRATCH-1D_predictors.sh new_test 32`
+  1. `R --vanilla < scripts/PaRSnIP.R data/Seq_solo.fasta <path-to-your-scratch-installation>/bin/run_SCRATCH-1D_predictors.sh new_test 32`
 
 Result will be stored in `data` folder in 2 parts: a) Sequence as `new_test_src` and b) Biological features as `new_test_src_bio`.
   
   2. `./run.sh --model deepsol1 --stage 1 --mode preprocess --device cpu --test_file new_test data/newtest.data`
 
-Preprocesses data `new_test` and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`.
+This step Preprocesses data, `new_test`, and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`. See Paper for more details
 
   3. `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/newtest.data`
 
