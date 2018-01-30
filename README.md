@@ -1,5 +1,7 @@
 ### DeepSol: A Deep Learning Framework for Sequence-Based Protein Solubility Prediction
 
+![alt text](https://zenodo.org/badge/DOI/10.5281/zenodo.1162655.svg)
+
 ![alt text](http://people.csail.mit.edu/sameerk/dsol.svg)
 
 ## Motivation
