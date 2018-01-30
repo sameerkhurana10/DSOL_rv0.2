@@ -63,7 +63,7 @@ if [ $stage == 1 ] ; then
         else 
 		newtest_seq=$newtest$src
                 newtest_tgt=$newtest$tgt
- 		KERAS_BACKEND=${keras_backend} python scripts/preprocess_dsol1.py -train_src data/train_src -train_tgt data/train_tgt -valid_src data/val_src -valid_tgt data/val_tgt -test_src data/${newtest_seq} -test_tgt data/${newtest_tgt} -save_data ${data}
+ 		KERAS_BACKEND=${keras_backend} python scripts/preprocess_dsol1.py -train_src data/train_src -train_tgt data/train_tgt -valid_src data/val_src -valid_tgt data/val_tgt -test_src data/${newtest_seq} -test_tgt data/${newtest_tgt} -save_data ${data} -shuffle 0
 	fi
 
     fi
@@ -77,7 +77,7 @@ if [ $stage == 1 ] ; then
 		newtest_seq=$newtest$src
                 newtest_tgt=$newtest$tgt
 		newtest_bio=$newtest$bio
-		KERAS_BACKEND=${keras_backend} python scripts/preprocess_dsol2.py -train_src data/train_src -train_src_bio data/train_src_bio -train_tgt data/train_tgt -valid_src data/val_src -valid_src_bio data/val_src_bio -valid_tgt data/val_tgt -test_src data/${newtest_seq} -test_src_bio data/${newtest_bio} -test_tgt data/${newtest_tgt} -save_data ${data}
+		KERAS_BACKEND=${keras_backend} python scripts/preprocess_dsol2.py -train_src data/train_src -train_src_bio data/train_src_bio -train_tgt data/train_tgt -valid_src data/val_src -valid_src_bio data/val_src_bio -valid_tgt data/val_tgt -test_src data/${newtest_seq} -test_src_bio data/${newtest_bio} -test_tgt data/${newtest_tgt} -save_data ${data} -shuffle 0
 	fi
 
     fi
