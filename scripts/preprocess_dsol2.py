@@ -175,6 +175,9 @@ def make_data(src_file, src_file_bio, tgt_file, train=False):
             tgt = [tgt[idx] for idx in perm]
         else:
             src_bio = [src_bio]
+    else:
+        if (len(src)==1):
+            src_bio = [src_bio]
     print('Prepared %d sentences' %
           (len(src)))
 
