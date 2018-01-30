@@ -1,5 +1,3 @@
-"""
-"""
 import keras
 from keras.preprocessing import sequence
 from keras.layers import merge, Embedding, Bidirectional, TimeDistributed
