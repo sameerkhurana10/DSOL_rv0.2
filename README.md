@@ -13,22 +13,28 @@ This step will install all the dependencies required for running DeepSol in an A
 
   - Install Anaconda
     1. Download Anaconda (64 bit) installer python3.x for linux : https://www.anaconda.com/download/#linux
-    2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location
+    2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location 
+    3. Need conda > 4.3.30 (If conda already present but lower than this version do: conda upgrade conda)
 
-  - Next creating the environment 
+  - Creating the environment 
     1. Run `git clone https://github.com/sameerkhurana10/DSOL_rv0.2.git`
     2. Run `cd DSOL_rv0.2`
     3. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
     4. Run `conda env create -f environment.yml`
     5. Run `source activate dsol`
 
-  - Finally, R requirements
+  - R requirements
     -  R libraries
-       1.  Interpol (Run `R` and do `install.packages('Interpol')` )
-       2.  bio3d    (Run `R` and do `install.packages('bio3d')` )
-       3.  doMC     (Run `R` and do `install.packages('doMC')`)
+       1.  Interpol (Run R: `R` and do `install.packages('Interpol')` )
+       2.  bio3d    (do `install.packages('bio3d')` )
+       3.  doMC     (do `install.packages('doMC')`)
+    Quit R: `quit()` 
   
   - SCRATCH (version SCRATCH-1D release 1.1) (http://scratch.proteomics.ics.uci.edu, Downloads: http://download.igb.uci.edu/#sspro)
+    1. Run `wget http://download.igb.uci.edu/SCRATCH-1D_1.1.tar.gz`
+    2. Run `tar -xvzf SCRATCH-1D_1.1.tar.gz`
+    3. Run `cd SCRATCH-1D_1.1`
+    4. Run `perl install.pl`
 
 
 All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`.
@@ -159,3 +165,20 @@ For GPU:
 Result will be saved in `results/reports/`.
 
 Note that we used `--model deepsol2`, you can use `deepsol3` for 2. 
+
+# FAQ
+
+1. What all system can your code run on?
+A) On most Linux based systems, we tested on Ubuntu 14.04 and 14.10, RedHat 7.4 Maipo and Arch (both cpu and gpu).
+
+2. How to remove a conda environment?
+A) conda remove --name dsol --all
+
+3. What if I get error ` error while loading shared libraries: libmpfr.so.4:` while installing SCRATCH on Arch ?
+A) Do `ln -s /usr/lib/libmpfr.so.6.0.0 /usr/lib/libmpfr.so.4`. SCRATCH looks for `mpfr.so.4` but Arch has a newer version, so we symlink the old location to the new library.
+   
+
+
+   
+
+
