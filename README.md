@@ -51,8 +51,12 @@ To run DeepSol on your own protein sequences you need the following two things:
 ### Execute in the command line
  
   1. `R --vanilla < scripts/PaRSnIP.R data/Seq_solo.fasta <path-to-your-scratch-installation>/bin/run_SCRATCH-1D_predictors.sh new_test 32`
+  
+  `32` is the number of processors, `new_test` is the output files' prefix
 
-Result will be stored in `data` folder in 2 parts: a) Sequence as `new_test_src` and b) Biological features as `new_test_src_bio`.
+Following this step, two files are created in the `data` folder: 
+* `new_test_src` : contains raw protein sequences
+* `new_test_src_bio` : contains biological features corresponding to the raw protein sequences
 
 **Note**: `data/Seq_multi.fasta` can be used instead of `data/Seq_solo.fasta`. `Seq_multi.fasta` has multiple protein sequences
   
