@@ -62,7 +62,7 @@ Following this step, two files are created in the `data` folder:
   
   2. `./run.sh --model deepsol1 --stage 1 --mode preprocess --device cpu --test_file new_test data/newtest.data`
 
-This step Preprocesses data, `new_test`, and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`. See Paper for more details
+This step Preprocesses data files from step 1., and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`. See Paper for more details
 
   3. `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/newtest.data`
 
