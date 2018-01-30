@@ -1,7 +1,4 @@
 #!/bin/bash
-# Copyright 2018  Massachusetts Institute of Technology (Sameer Khurana)
-#                 Qatar Computing Research Institute    (Raghavendra Mall)
-# Apache 2.0
 
 # Recipe for running DeepSol training and decoding
 
