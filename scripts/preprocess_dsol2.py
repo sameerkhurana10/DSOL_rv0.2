@@ -1,7 +1,3 @@
-"""
-Copyright 2017, Sameer Khurana, All rights reserved.
-"""
-
 # Code based on https://github.com/OpenNMT/OpenNMT-py/blob/master/preprocess.py
 
 import pickle
