@@ -28,6 +28,7 @@ This step will install all the dependencies required for running DeepSol in an A
        1.  Interpol (Run R: `R` and do `install.packages('Interpol')` )
        2.  bio3d    (do `install.packages('bio3d')` )
        3.  doMC     (do `install.packages('doMC')`)
+       
     Quit R: `quit()` 
   
   - SCRATCH (version SCRATCH-1D release 1.1) (http://scratch.proteomics.ics.uci.edu, Downloads: http://download.igb.uci.edu/#sspro)
@@ -169,12 +170,15 @@ Note that we used `--model deepsol2`, you can use `deepsol3` for 2.
 # FAQ
 
 1. What all system can your code run on?
+
 A) On most Linux based systems, we tested on Ubuntu 14.04 and 14.10, RedHat 7.4 Maipo and Arch (both cpu and gpu).
 
 2. How to remove a conda environment?
+
 A) conda remove --name dsol --all
 
 3. What if I get error ` error while loading shared libraries: libmpfr.so.4:` while installing SCRATCH on Arch ?
+
 A) Do `ln -s /usr/lib/libmpfr.so.6.0.0 /usr/lib/libmpfr.so.4`. SCRATCH looks for `mpfr.so.4` but Arch has a newer version, so we symlink the old location to the new library.
    
 
