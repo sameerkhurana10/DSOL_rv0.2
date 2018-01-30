@@ -45,7 +45,7 @@ All operations related to DeepSol models are to be performed from the folder `DS
 
 To run DeepSol on your own protein sequences you need the following two things:
 
-  1. Protein Sequence File: Protein sequence/sequences of interest in fasta format (https://en.wikipedia.org/wiki/FASTA_format). We provide `data/Seq_solo.fasta` for our dataset 
+  1. Protein Sequence File: Protein sequence/sequences of interest in fasta format (https://en.wikipedia.org/wiki/FASTA_format). We provide `data/Seq_solo.fasta` as an example 
   2. SCRATCH: Software used to extract biological features from a given protein sequence file. Follow instructions in the previous section to Install SCRATCH
 
 ### Execute in the command line
@@ -87,7 +87,7 @@ main options (for others, see top of script file)
 ```
 There are two stages in the script. 
 
-1. Data preparation as demonstrated with new test data.
+1. Data preparation as demonstrated with new test data. Prepared data is already provided in the data folder: `protein.data` and `protein_with_bio.data`.
 2. Model building with `--mode train` and decoding with best DeepSol models using `--mode decode`. Information about `--mode cv` is given in "parameter variance check" section.
 
 We provide support for gpu usage using the option `--device cuda`. More details in the GPU section.
