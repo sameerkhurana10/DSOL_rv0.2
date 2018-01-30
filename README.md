@@ -37,7 +37,7 @@ This step will install all the dependencies required for running DeepSol in an A
     2. Run `tar -xvzf SCRATCH-1D_1.1.tar.gz`
     3. Run `cd SCRATCH-1D_1.1`
     4. Run `perl install.pl`
-    5.Go back to the project root directory: `cd ..`
+    5. Go back to the project root directory: `cd ..`
 
 
 All operations related to DeepSol models are to be performed from the folder `DSOL_rv0.2`. Make sure you are in the correct directory before proceeding
