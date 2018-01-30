@@ -62,7 +62,9 @@ Following this step, two files are created in the `data` folder:
   
   2. `./run.sh --model deepsol1 --stage 1 --mode preprocess --device cpu --test_file new_test data/newtest.data`
 
-This step Preprocesses data files from step 1., and stores at `data/newtest.data` in a format acceptable to Deepsol models. Note: you can also use `deepsol2` or `deepsol3` in place of `deepsol1`. See Paper for more details
+This step Preprocesses data files from step 1., and stores at `data/newtest.data` in a format acceptable to Deepsol models. 
+
+**Note**: You can also use `deepsol2` or `deepsol3` in place of `deepsol1`. See Paper for more details
 
   3. `./run.sh --model deepsol1 --stage 2 --mode decode --device cpu data/newtest.data`
 
@@ -103,7 +105,7 @@ Train DeepSol models using pre-compiled training, validation data and optimal hy
 
 Result will be a model named `deepsol1` or `deepsol2` stored in `results/models/`. 
 
-Note that we used `--model deepsol2`, you can use `deepsol3` for 2. Ignore `UserWarning` at the output.
+Note that we used `--model deepsol2`, you can use `deepsol3` for step 2. Ignore `UserWarning` at the output.
 
 ### Test Best DeepSol Models
 
@@ -114,7 +116,7 @@ Test existing DeepSol models with pre-compiled test data:
 
 Result will be saved in `results/reports/`.
 
-Note that we used `--model deepsol2`, you can use `deepsol3` for 2. 
+Note that we used `--model deepsol2`, you can use `deepsol3` for step 2. 
 
 
 ## GPU
@@ -138,7 +140,7 @@ Train DeepSol models using pre-compiled training, validation data and optimal hy
 
 Result will be a model named `deepsol1` or `deepsol2` stored in `results/models`.
 
-Note that we used `--model deepsol2`, you can use `deepsol3` for 2. Ignore `UserWarning` at the output.
+Note that we used `--model deepsol2`, you can use `deepsol3` for step 2. Ignore `UserWarning` at the output.
 
 Also, `--cuda_root` should be the path to your cuda installation. By default it is `/usr/local/cuda`.
 
@@ -151,7 +153,7 @@ Test existing DeepSol models with pre-compiled test data:
 
 Result will be saved in `results/reports/`.
 
-Note that we used `--model deepsol2`, you can use `deepsol3` for 2. 
+Note that we used `--model deepsol2`, you can use `deepsol3` for step 2. 
 
 
 ## Parameter Variance Check
