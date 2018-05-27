@@ -2,6 +2,15 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1162886.svg)](https://doi.org/10.5281/zenodo.1162886)
 
+Citing the paper:
+```
+@article{khurana2018deepsol,
+  title={DeepSol: a deep learning framework for sequence-based protein solubility prediction},
+  author={Khurana, Sameer and Rawi, Reda and Kunji, Khalid and Chuang, Gwo-Yu and Bensmail, Halima and Mall, Raghvendra},
+  journal={Bioinformatics}
+}
+```
+
 ![alt text](http://people.csail.mit.edu/sameerk/dsol.svg)
 
 ## Motivation
