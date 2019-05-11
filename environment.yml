@@ -53,7 +53,7 @@ dependencies:
 - libgcc-ng=7.2.0=h7cc24e2_2
 - libgfortran=3.0.0=1
 - libgfortran-ng=7.2.0=h9f7466a_2
-- libgpuarray=0.6.4=0
+- libgpuarray=0.7.6=0
 - libpng=1.6.34=hb9fc6fc_0
 - libsodium=1.0.15=hf101ebd_0
 - libssh2=1.8.0=h8c220ad_2
