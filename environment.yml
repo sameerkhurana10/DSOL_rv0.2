@@ -62,7 +62,7 @@ dependencies:
 - libxcb=1.12=hcd93eb1_4
 - libxml2=2.9.7=h26e45fe_0
 - mistune=0.8.3=py36_0
-- mkl=2017.0.1=0
+- mkl-service=1.1.2
 - nbconvert=5.3.1=py36hb41ffb7_0
 - nbformat=4.4.0=py36h31c9010_0
 - ncurses=6.0=h9df7e31_2
@@ -79,7 +79,7 @@ dependencies:
 - prompt_toolkit=1.0.15=py36h17d85b1_0
 - ptyprocess=0.5.2=py36h69acd42_0
 - pygments=2.2.0=py36h0d3125c_0
-- pygpu=0.6.4=py36_1
+- pygpu=0.7.5=py36_1
 - python=3.6.3=hc9025b9_1
 - python-dateutil=2.6.1=py36h88d3b88_1
 - pyzmq=16.0.3=py36he2533c7_0
