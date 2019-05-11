@@ -31,8 +31,8 @@ This step will install all the dependencies required for running DeepSol in an A
     1. Run `git clone https://github.com/sameerkhurana10/DSOL_rv0.2.git`
     2. Run `cd DSOL_rv0.2`
     3. Run `export PATH=<your_anaconda_folder>/bin:$PATH` 
-    4. Run `conda env create -f environment.yml` (Running on machine with gpu, additionally do `conda install cudnn pygpu libgpuarray`)
-    5. Run `source activate dsol`
+    4. Run `conda env create -f environment.yml` 
+    5. Run `source activate dsol` (Running on machine with gpu, additionally do `conda install cudnn pygpu libgpuarray`)
 
   - R requirements
     - Run R REPL by running the following: `R`
