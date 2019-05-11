@@ -110,7 +110,7 @@ def main():
     #To perform 10-fold cross-validation
     kf = KFold(n_splits=10,shuffle=False)
 
-    if (static_args.parameter_setting_id=="deepsol1"):
+    if ("deepsol1" in static_args.parameter_setting_id):
         x_train, y_train = data['train']['src'], data['train']['tgt']
         dynamic_args['num_classes'] = len(set(y_train))
 
