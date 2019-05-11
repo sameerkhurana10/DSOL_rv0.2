@@ -24,14 +24,13 @@ This step will install all the dependencies required for running DeepSol in an A
 
   - Install Anaconda
     1. Download Anaconda (64 bit) installer python3.x for linux : https://www.anaconda.com/download/#linux
-    2. Run the installer : `bash Anaconda3-2019.03-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location 
+    2. Run the installer : `bash Anaconda3-2019.03-Linux-x86_64.sh` and follow the instructions to install.
     3. Need conda > 4.3.30 (If conda already present but lower than this version do: conda upgrade conda)
 
   - Creating the environment 
     1. Run `git clone https://github.com/sameerkhurana10/DSOL_rv0.2.git`
     2. Run `cd DSOL_rv0.2`
-    3. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
-    4. If running on machine with gpu, additionally do `conda install tensorflow-gpu`
+    3. Run `export PATH=<your_anaconda_folder>/bin:$PATH` (Running on machine with gpu, additionally do `conda install tensorflow-gpu`)
     4. Run `conda env create -f environment.yml`
     5. Run `source activate dsol`
 
@@ -74,9 +73,9 @@ Following this step, two files are created in the `data` folder:
   
   2. `./run.sh --model deepsol1 --stage 1 --mode preprocess --device cpu --test_file new_test data/newtest.data`
       
-**Note**: If you get an MKL error, do `export MKL_THREADING_LAYER=GNU` in run.sh)
+**Note**: If you get an MKL error, do `export MKL_THREADING_LAYER=GNU` in run.sh
 
-This step Preprocesses data files from step 1., and stores at `data/newtest.data` in a format acceptable to Deepsol models. 
+This step Preprocesses data files from step 1, and stores at `data/newtest.data` in a format acceptable to Deepsol models. 
 
 **Note**: You can also use `deepsol2` or `deepsol3` in place of `deepsol1`. See Paper for more details
 
@@ -107,6 +106,7 @@ There are two stages in the script.
 2. Model building with `--mode train` and decoding with best DeepSol models using `--mode decode`. Information about `--mode cv` is given in "parameter variance check" section.
 
 We provide support for gpu usage using the option `--device cuda`. More details in the GPU section.
+
 
 ## CPU
 
@@ -145,6 +145,7 @@ Code was tested against GeForce GTX 1080 Nvidia GPUs https://www.nvidia.com/en-u
 
 Code was also tested on Nvidia Tesla K20Xm : https://www.techpowerup.com/gpudb/1884/tesla-k20xm with driver version 375.66.
 
+
 ### Train New Models
 
 Train DeepSol models using pre-compiled training, validation data and optimal hyper-parameter setting as in `parameters.json` file:
@@ -157,6 +158,7 @@ Result will be a model named `deepsol1` or `deepsol2` stored in `results/models`
 Note that we used `--model deepsol2`, you can use `deepsol3` for step 2. Ignore `UserWarning` at the output.
 
 Also, `--cuda_root` should be the path to your cuda installation. By default it is `/usr/local/cuda`.
+
 
 ### Test Best DeepSol Models
 
@@ -202,8 +204,4 @@ A) conda remove --name dsol --all
 
 A) Do `ln -s /usr/lib/libmpfr.so.6.0.0 /usr/lib/libmpfr.so.4`. SCRATCH looks for `mpfr.so.4` but Arch has a newer version, so we symlink the old location to the new library.
    
-
-
-   
-
 
