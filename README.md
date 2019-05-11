@@ -31,6 +31,7 @@ This step will install all the dependencies required for running DeepSol in an A
     1. Run `git clone https://github.com/sameerkhurana10/DSOL_rv0.2.git`
     2. Run `cd DSOL_rv0.2`
     3. Run `export PATH=<your_anaconda_folder>/bin:$PATH`
+    4. If running only on cpu, open the environment.yml file and change tensorflow-gpu to tensorflow.
     4. Run `conda env create -f environment.yml`
     5. Run `source activate dsol`
 
