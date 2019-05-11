@@ -24,7 +24,7 @@ This step will install all the dependencies required for running DeepSol in an A
 
   - Install Anaconda
     1. Download Anaconda (64 bit) installer python3.x for linux : https://www.anaconda.com/download/#linux
-    2. Run the installer : `bash Anaconda3-5.0.1-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location 
+    2. Run the installer : `bash Anaconda3-2019.03-Linux-x86_64.sh` and follow the instructions to install anaconda at your preferred location 
     3. Need conda > 4.3.30 (If conda already present but lower than this version do: conda upgrade conda)
 
   - Creating the environment 
