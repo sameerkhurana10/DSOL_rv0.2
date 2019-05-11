@@ -79,7 +79,7 @@ dependencies:
 - prompt_toolkit=1.0.15=py36h17d85b1_0
 - ptyprocess=0.5.2=py36h69acd42_0
 - pygments=2.2.0=py36h0d3125c_0
-- pygpu=0.7.5=py36_1
+- pygpu=0.7.6=py36h3010b51_0
 - python=3.6.3=hc9025b9_1
 - python-dateutil=2.6.1=py36h88d3b88_1
 - pyzmq=16.0.3=py36he2533c7_0
