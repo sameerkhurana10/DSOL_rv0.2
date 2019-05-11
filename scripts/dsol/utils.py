@@ -1,6 +1,6 @@
 import keras
 from keras.preprocessing import sequence
-from keras.layers import merge, Bidirectional, TimeDistributed
+from keras.layers import Concatenate, Multiply, Bidirectional, TimeDistributed, concatenate, multiply
 from keras.layers.core import *
 from keras.models import *
 
@@ -164,16 +164,16 @@ def get_activation_layer(activation):
     return keras.layers.core.Activation(activation)
 
 
-def get_merge_concat_layer(list_tensors, mode='concat'):
-    return merge(list_tensors, mode=mode)
+#def get_merge_concat_layer(list_tensors, mode='concat'):
+#    return (list_tensors, mode=mode)
 
 
-def get_merge_add_layer():
-    return keras.layers.merge.Add()
+#def get_merge_add_layer():
+#    return keras.layers.merge.Add()
 
 
-def get_merge_multiply_layer():
-    return keras.layers.merge.Multiply()
+#def get_merge_multiply_layer():
+#    return keras.layers.merge.Multiply()
 
 
 def get_model(main_input, main_output):
@@ -216,5 +216,5 @@ def attention_3d_block(input_layer, inputs):
         a = Lambda(lambda x: K.mean(x, axis=1), name='dim_reduction')(a)
         a = RepeatVector(input_dim)(a)
     a_probs = Permute((2, 1), name='attention_vec')(a)
-    output_attention_mul = merge([inputs, a_probs], name='attention_mul', mode='mul')
+    output_attention_mul = multiply([inputs, a_probs])
     return output_attention_mul
