@@ -2,7 +2,7 @@
 """
 import keras
 from keras.preprocessing import sequence
-from keras.layers import merge, Embedding, Bidirectional, TimeDistributed
+from keras.layers import Concatenate, Embedding, Bidirectional, TimeDistributed, concatenate
 from keras.layers.convolutional import Conv1D
 from keras.layers.core import *
 from keras.models import *
@@ -99,7 +99,13 @@ class DeepSol():
                         convs.append(conv_out)
     
                     # the below concat approach will be deprecated in 4 months
-                    x = merge(convs, mode='concat') if len(convs) > 1 else convs[0]
+                    #x = merge(convs, mode='concat') if len(convs) > 1 else convs[0]
+                    if len(convs) > 1:
+                        x = convs[0]
+                        for i in range(1,len(convs)):
+                            x = concatenate([x,convs[i]])
+                    else:
+                        x = convs[0]
 
             # Recurrent Layers
             if self.rnn_config is not None:
@@ -136,7 +142,8 @@ class DeepSol():
                             
             # Append biological feats
             if self.biofeats is not None:
-                x = merge([x, input_bio_feats], mode='concat')
+                #x = merge([x, input_bio_feats], mode='concat')
+                x = concatenate([x, input_bio_feats])
     
             # Dense Layers
             for l in range(len(self.fc_config)):
