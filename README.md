@@ -73,6 +73,7 @@ Following this step, two files are created in the `data` folder:
 **Note**: `data/Seq_multi.fasta` can be used instead of `data/Seq_solo.fasta`. `Seq_multi.fasta` has multiple protein sequences
   
   2. `./run.sh --model deepsol1 --stage 1 --mode preprocess --device cpu --test_file new_test data/newtest.data`
+      (Note: If you get an MKL error, do `export MKL_THREADING_LAYER=GNU` in run.sh)
 
 This step Preprocesses data files from step 1., and stores at `data/newtest.data` in a format acceptable to Deepsol models. 
 
