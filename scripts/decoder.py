@@ -104,7 +104,7 @@ def get_classification_prediction(best_model, x, y):
 def main():
     data = load_data()
 
-    if (static_args.parameter_setting_id=="deepsol1"):
+    if ("deepsol1" in static_args.parameter_setting_id):
         x_train, y_train = data['train']['src'], data['train']['tgt']
         dynamic_args['num_classes'] = len(set(y_train))
 
