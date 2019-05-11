@@ -43,7 +43,7 @@ fi
 if [[ $device == *"cuda"* ]]; then
     export CUDA_HOME=${cuda_root}
     export LD_LIBRARY_PATH=${cuda_root}/lib64
-    export THEANO_FLAGS="base_compiledir=$(pwd)/.theano,cuda.root=${cuda_root},device=${device},dnn.enabled=False,floatX=float32"
+    export THEANO_FLAGS="base_compiledir=$(pwd)/.theano,cuda.root=${cuda_root},device=${device},floatX=float32"
 fi
 
 src='_src'
