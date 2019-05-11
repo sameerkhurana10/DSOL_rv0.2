@@ -52,7 +52,7 @@ bio='_src_bio'
 
 if [ $stage == 1 ] ; then
     echo "++++++++++++++++++++ DATA PREPARATION ++++++++++++++++++++"
-    if [[ $model == "deepsol1" && $mode == "preprocess" ]]; then
+    if [[ $model == *"deepsol1"* && $mode == "preprocess" ]]; then
 
         newtest=${test_file}
         if [[ $newtest == "" ]]; then
@@ -65,7 +65,7 @@ if [ $stage == 1 ] ; then
 
     fi
 
-    if [[ $model == "deepsol2" || $model == "deepsol3" ]]; then
+    if [[ $model == *"deepsol2"* || $model == *"deepsol3"* ]]; then
 
         newtest=${test_file}
         if [[ $newtest == "" ]]; then
@@ -87,15 +87,15 @@ if [ $stage == 2 ] ; then
 
 	echo "++++++++++++++++++++ BUILDING NEW MODELS ++++++++++++++++++++"
 
-	if [[ $model == "deepsol1" ]]; then
+	if [[ $model == *"deepsol1"* ]]; then
 	    KERAS_BACKEND=${keras_backend} python scripts/main_dsol1.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
 	fi
 
-	if [[ $model == "deepsol2" ]]; then
+	if [[ $model == *"deepsol2"* ]]; then
 	    KERAS_BACKEND=${keras_backend} python scripts/main_dsol2.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
 	fi
 
-	if [[ $model == "deepsol3" ]]; then
+	if [[ $model == *"deepsol3"* ]]; then
 	    KERAS_BACKEND=${keras_backend} python scripts/main_dsol3.py -conf_file ${conf_file} -parameter_setting_id ${parameter_setting_id} -data ${data}
 	fi
     fi
