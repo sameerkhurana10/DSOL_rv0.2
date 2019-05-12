@@ -174,7 +174,7 @@ def main():
         x_test = x_full[test_index]
         y_test = y_full[test_index]
         y_test = np.array(y_test, dtype='int32')
-        if (static_args.parameter_setting_id=='deepsol1'):
+        if ("deepsol1" in static_args.parameter_setting_id):
             [acc_test, score_report_test, cm_test, mcc_test, pred_test, pred_prob_test] = get_classification_performance(best_model,x_test,y_test)
         else:
             x_test_bio = x_full_bio[test_index]
