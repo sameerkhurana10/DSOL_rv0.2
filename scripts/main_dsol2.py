@@ -46,7 +46,7 @@ print(dynamic_args)
 
 
 def get_model_path():
-    model_name = 'model-parameter_setting-' + str(static_args.parameter_setting_id)
+    model_name = str(static_args.parameter_setting_id)
     model_dir = static_args.results_dir + '/models/'
     if not os.path.isdir(model_dir):
         os.makedirs(model_dir)
