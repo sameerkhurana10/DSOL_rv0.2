@@ -144,7 +144,7 @@ def main():
 
     best_model = utils.load_model(get_model_path())
 
-    if (static_args.parameter_setting_id=='deepsol1'):
+    if ("deepsol1" in static_args.parameter_setting_id):
         [pred_test,pred_prob_test] = get_classification_prediction(best_model,x_test,y_test)
     else:
         [pred_test,pred_prob_test] = get_classification_prediction(best_model,[x_test,x_test_bio],y_test)
